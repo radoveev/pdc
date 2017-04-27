@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xml>
+<geometry>
+    <g id="face">
+        <import id="face_l" connectivity="face_l"/>
+        <mirror id="face_r" axis="y" template="face_l"/>
+    </g>
+    <g id="eye_l">
+        <import id="eye_outline_l"/>
+        <import id="eye_white_l"/>
+        <import id="eye_iris_l"/>
+        <import id="eye_pupil_l"/>
+        <import id="eye_lower_l" geometry="eye_shadow_lower_l"/>
+        <import id="eye_upper_l" geometry="eye_shadow_upper_l"/>
+        <import id="eye_lid_l" geometry="eye_shadow_lid_l"/>
+        <import id="eye_shadow_lid_l" connectivity="eye_lid_l"/>
+        <mirror id="eye_outline_r" axis="y" template="eye_outline_l"/>
+        <mirror id="eye_white_r" axis="y" template="eye_white_l"/>
+        <mirror id="eye_iris_r" axis="y" template="eye_iris_l"/>
+        <mirror id="eye_pupil_r" axis="y" template="eye_pupil_l"/>
+        <mirror id="eye_lower_r" axis="y" template="eye_lower_l"/>
+        <mirror id="eye_upper_r" axis="y" template="eye_upper_l"/>
+        <mirror id="eye_lid_r" axis="y" template="eye_lid_l"/>
+        <mirror id="eye_shadow_lid_r" axis="y" template="eye_shadow_lid_l"/>
+    </g>
+    <g id="face_decorations">
+        <import id="eyebrow_l"/>
+        <mirror id="eyebrow_r" axis="y" template="eyebrow_l"/>
+        <import id="nose_l"/>
+        <import id="nostril_l"/>
+        <import id="nose_r"/>
+        <import id="nostril_r"/>
+    </g>
+    <g id="lips">
+        <import id="lower_lip_l" connectivity="lower_lip_l"/>
+        <mirror id="lower_lip_r" axis="y" template="lower_lip_l"/>
+        <import id="mouthline"/>
+        <import id="upper_lip_l" connectivity="upper_lip_l"/>
+        <mirror id="upper_lip_r" axis="y" template="upper_lip_l"/>
+    </g>
+    <g id="hair1_back_group">
+        <import id="hair1_back"/>
+    </g>
+    <g id="hair1_front">
+        <import id="hair1_front_l"/>
+        <import id="hair1_front_r"/>
+    </g>
+    <g id="torso_decorations">
+        <import id="line_collarbone_l"/>
+        <import id="line_collarbone_r"/>
+        <import id="belly_button"/>
+    </g>
+    <g id="torso_base">
+        <import id="torso_base_l" connectivity="torso_l"/>
+        <mirror id="torso_base_r" axis="y" template="torso_base_l"/>
+    </g>
+    <g id="torso_shoulders0">
+        <import id="torso_shoulders0_l" connectivity="torso_l"/>
+        <mirror id="torso_shoulders0_r" axis="y" template="torso_shoulders0_l"/>
+    </g>
+    <g id="torso_waist0">
+        <import id="torso_waist0_l" connectivity="torso_l"/>
+        <mirror id="torso_waist0_r" axis="y" template="torso_waist0_l"/>
+    </g>
+    <g id="torso_waist100">
+        <import id="torso_waist100_l" connectivity="torso_l"/>
+        <mirror id="torso_waist100_r" axis="y" template="torso_waist100_l"/>
+    </g>
+    <g id="torso_hips0">
+        <import id="torso_hips0_l" connectivity="torso_l"/>
+        <mirror id="torso_hips0_r" axis="y" template="torso_hips0_l"/>
+    </g>
+    <g id="torso_hips100">
+        <import id="torso_hips100_l" connectivity="torso_l"/>
+        <mirror id="torso_hips100_r" axis="y" template="torso_hips100_l"/>
+    </g>
+    <g id="arms_base">
+        <import id="arm_base_l" geometry="arm_l" connectivity="arm_l"/>
+        <mirror id="arm_base_r" axis="y" template="arm_base_l"/>
+    </g>
+    <g id="legs_base">
+        <import id="leg_base_l" connectivity="leg_l"/>
+        <mirror id="leg_base_r" axis="y" template="leg_base_l"/>
+    </g>
+    <g id="arms">
+        <conform id="arm_l" geometry="arm_base_l" target="torso_base_l">
+            <default offset="static" anchor="shoulder_joint_l"/>
+        </conform>
+        <conform id="arm_r" geometry="arm_base_r" target="torso_base_r">
+            <default offset="static" anchor="shoulder_joint_r"/>
+        </conform>
+    </g>
+    <g id="legs">
+        <conform id="leg_l" geometry="leg_base_l" target="torso_base_l">
+            <default offset="none"/>
+            <node idx="0" offset="dynamic" anchor="hip_joint_l"/>
+            <node idx="1" offset="dynamic" anchor="hip_joint_l"/>
+        </conform>
+        <conform id="leg_r" geometry="leg_base_r" target="torso_base_r">
+            <default offset="none"/>
+            <node idx="0" offset="dynamic" anchor="hip_joint_r"/>
+            <node idx="1" offset="dynamic" anchor="hip_joint_r"/>
+        </conform>
+    </g>
+    <g id="pussy">
+        <import id="pussy_shadow"/>
+        <import id="pussy_shadow_red"/>
+        <import id="labia_inner_l"/>
+        <mirror id="labia_inner_r" axis="y" template="labia_inner_l"/>
+        <import id="labia_outer_l"/>
+        <mirror id="labia_outer_r" axis="y" template="labia_outer_l"/>
+    </g>
+    <g id="boobs_clothed_20">
+        <import id="boob_clothed_20_l" connectivity="boob_l"/>
+        <mirror id="boob_clothed_20_r" axis="y"
+         template="boob_clothed_20_l"/>
+    </g>
+    <g id="boobs_clothed_100">
+        <import id="boob_clothed_100_l" connectivity="boob_l"/>
+        <mirror id="boob_clothed_100_r" axis="y"
+         template="boob_clothed_100_l"/>
+    </g>
+    <g id="boobs0">
+        <import id="boob0_l" connectivity="boob_l"/>
+        <mirror id="boob0_r" axis="y" template="boob0_l"/>
+    </g>
+    <g id="boobs20">
+        <import id="boob20_l" connectivity="boob_l"/>
+        <mirror id="boob20_r" axis="y" template="boob20_l"/>
+    </g>
+    <g id="boobs100">
+        <import id="boob100_l" connectivity="boob_l"/>
+        <mirror id="boob100_r" axis="y" template="boob100_l"/>
+    </g>
+    <g id="nipples_base">
+        <import id="aureola_base_l" geometry="aureola_l" />
+        <mirror id="aureola_base_r" axis="y" template="aureola_base_l"/>
+        <import id="nipple_stem_base_l" geometry="nipple_stem_l" />
+        <mirror id="nipple_stem_base_r" axis="y"
+             template="nipple_stem_base_l"/>
+        <import id="nipple_top_base_l" geometry="nipple_top_l" />
+        <mirror id="nipple_top_base_r" axis="y"
+             template="nipple_top_base_l"/>
+    </g>
+    <g id="nipples">
+        <conform id="aureola_l" geometry="aureola_base_l" target="boob20_l">
+            <default offset="dynamic" anchor="boob_outer_l"/>
+        </conform>
+        <conform id="aureola_r" geometry="aureola_base_r" target="boob20_r">
+            <default offset="dynamic" anchor="boob_outer_r"/>
+        </conform>
+        <conform id="nipple_stem_l" geometry="nipple_stem_base_l"
+             target="boob20_l">
+            <default offset="dynamic" anchor="boob_outer_l"/>
+        </conform>
+        <conform id="nipple_stem_r" geometry="nipple_stem_base_r"
+             target="boob20_r">
+            <default offset="dynamic" anchor="boob_outer_r"/>
+        </conform>
+        <conform id="nipple_top_l" geometry="nipple_top_base_l"
+             target="boob20_l">
+            <default offset="dynamic" anchor="boob_outer_l"/>
+        </conform>
+        <conform id="nipple_top_r" geometry="nipple_top_base_r"
+             target="boob20_r">
+            <default offset="dynamic" anchor="boob_outer_r"/>
+        </conform>
+    </g>
+    <g id="bra0">
+        <import id="bra_cup0_l" connectivity="bra_cup_l"/>
+        <mirror id="bra_cup0_r" axis="y" template="bra_cup0_l"/>
+    </g>
+    <g id="bra100">
+        <import id="bra_cup100_l" connectivity="bra_cup_l"/>
+        <mirror id="bra_cup100_r" axis="y" template="bra_cup100_l"/>
+    </g>
+    <g id="uniform_shirt_l">
+        <import id="uni_shirt_arm_l"/>
+        <import id="uni_shirt_body_l"/>
+    </g>
+    <g id="uniform_shirt">
+        <use id="uniform_shirt_l"/>
+        <mirror id="uniform_shirt_r" axis="y" template="uniform_shirt_l"/>
+        <import id="uni_shirt_decorations"/>
+    </g>
+    <g id="uniform_bowtie">
+        <import id="uni_bowtie_soft_l"/>
+        <mirror id="uni_bowtie_r" axis="y" template="uni_bowtie_soft_l"/>
+    </g>
+    <g id="uniform_shirt_collar">
+        <import id="uni_shirt_collar"/>
+    </g>
+    <g id="uniform_shirt_collar_flaps_small">
+        <import id="uni_shirt_collar_flaps_small"/>
+    </g>
+    <g id="uniform_jacket_l">
+        <import id="uni_jacket_arm_l"/>
+        <import id="uni_jacket_body_l"/>
+    </g>
+    <g id="uniform_jacket">
+        <use id="uniform_jacket_l"/>
+        <mirror id="uniform_jacket_r" axis="y" template="uniform_jacket_l"/>
+        <import id="uni_jacket_decoration"/>
+    </g>
+    <g id="uniform_jacket_loose_l">
+        <import id="uni_jacket_loose_body_l"/>
+        <use id="uni_jacket_arm_l"/>
+    </g>
+    <g id="uniform_jacket_loose">
+        <use id="uniform_jacket_loose_l"/>
+        <mirror id="uniform_jacket_loose_r" axis="y"
+         template="uniform_jacket_loose_l"/>
+        <import id="uni_jacket_loose_decoration"/>
+    </g>
+    <g id="uniform_boobs_0">
+        <import id="uni_jacket_boob0_l" connectivity="uni_boob_l"/>
+        <mirror id="uni_jacket_boob0_r" axis="y"
+         template="uni_jacket_boob0_l"/>
+    </g>
+    <g id="uniform_boobs_20">
+        <import id="uni_jacket_boob20_l" connectivity="uni_boob_l"/>
+        <mirror id="uni_jacket_boob20_r" axis="y"
+         template="uni_jacket_boob20_l"/>
+    </g>
+    <g id="uniform_boobs_100">
+        <import id="uni_jacket_boob100_l" connectivity="uni_boob_l"/>
+        <mirror id="uni_jacket_boob100_r" axis="y"
+         template="uni_jacket_boob100_l"/>
+    </g>
+    <g id="uniform_skirt_0">
+        <import id="uni_skirt_micro" connectivity="uni_skirt"/>
+    </g>
+    <g id="uniform_skirt_100">
+        <import id="uni_skirt_long" connectivity="uni_skirt"/>
+    </g>
+</geometry>
+<connectivity>
+    <mirror template_suffix="_l" mirror_suffix="_r"/>
+    <circular id="upper_lip_l"/>
+    <circular id="lower_lip_l"/>
+    <circular id="eye_lid_l"/>
+    <circular id="face_l">
+        <node id="chin_m"/>
+        <node id="chin_l"/>
+        <node id="jaw_l"/>
+        <node id="face_side_l"/>
+        <node id="face_top"/>
+    </circular>
+    <circular id="arm_l">
+        <node id="shoulder_joint_l"/>
+        <node id="shoulder_l"/>
+        <node id="shoulder2_l"/>
+        <node id="outer_upper_arm_l"/>
+        <node id="elbow_l"/>
+        <node id="outer_wrist_l"/>
+        <node id="inner_wrist_l"/>
+        <node id="inner_lower_arm_l"/>
+        <node id="crook_of_the_arm_l"/>
+        <node id="armpit_l"/>
+    </circular>
+    <circular id="torso_l">
+        <node id="head_m"/>
+        <node id="head_l"/>
+        <node id="throat_l"/>
+        <node id="collarbone_l"/>
+        <node id="shoulder_l"/>
+        <node id="shoulder_joint_l"/>
+        <node id="armpit_l"/>
+        <node id="ribs_l"/>
+        <node id="waist_l"/>
+        <node id="pelvic_bone_l"/>
+        <node id="hip_joint_l"/>
+        <node id="crotch_l"/>
+        <node id="pussy2_l"/>
+        <node id="pussy3_l"/>
+        <node id="pussy4_l"/>
+        <node id="venus_mound"/>
+    </circular>
+    <circular id="leg_l">
+        <node id="hip_joint_l"/>
+        <node id="outer_thigh_l"/>
+        <node id="outer_knee_l"/>
+        <node id="outer_calf_l"/>
+        <node id="outer_ankle_l"/>
+        <node id="inner_ankle_l"/>
+        <node id="inner_calf_l"/>
+        <node id="inner_knee_l"/>
+        <node id="inner_thigh_l"/>
+        <node id="crotch_l"/>
+        <node id="hip_joint_l"/>
+    </circular>
+    <circular id="boob_l">
+        <node id="cleavage_upper"/>
+        <node id="cleavage_lower"/>
+        <node id="boob_inner_l"/>
+        <node id="boob_bottom_l"/>
+        <node id="boob_outer_l"/>
+        <node id="boob_armpit_l"/>
+        <node id="boob_shoulder_l"/>
+        <node id="cleavage_upper"/>
+    </circular>
+    <circular id="bra_cup_l"/>
+</connectivity>
+<layers>
+    <layer name="hair_back">
+        <geometry id="hair1_back_group"/>
+        <trace_outline
+            id="line_hair1_back"
+            base_geometry="hair1_back"
+            start="0"
+            end="-1"/>
+    </layer>
+    <layer name="arms">
+        <geometry id="arms"/>
+        <trace_outline
+            id="line_arm_outer_l"
+            base_geometry="arm_l"
+            start="0"
+            end="5"/>
+        <trace_outline
+            id="line_arm_outer_r"
+            base_geometry="arm_r"
+            start="0"
+            end="5"/>
+        <trace_outline
+            id="line_arm_inner_l"
+            base_geometry="arm_l"
+            start="6"
+            end="9"/>
+        <trace_outline
+            id="line_arm_inner_r"
+            base_geometry="arm_r"
+            start="6"
+            end="9"/>
+    </layer>
+    <layer name="torso">
+        <animation name="torso"/>
+    </layer>
+    <layer name="torso_decorations">
+        <geometry id="pussy"/>
+        <geometry id="torso_decorations"/>
+        <trace_outline
+            id="line_neck_l"
+            base_geometry="torso_l"
+            start="0"
+            end="4"/>
+        <trace_outline
+            id="line_neck_r"
+            base_geometry="torso_r"
+            start="0"
+            end="4"/>
+        <trace_outline
+            id="line_torso_l"
+            base_geometry="torso_l"
+            start="6"
+            end="10"/>
+        <trace_outline
+            id="line_torso_r"
+            base_geometry="torso_r"
+            start="6"
+            end="10"/>
+    </layer>
+    <layer name="legs">
+        <geometry id="legs"/>
+        <trace_outline
+            id="line_leg_outer_l"
+            base_geometry="leg_l"
+            start="0"
+            end="4"/>
+        <trace_outline
+            id="line_leg_outer_r"
+            base_geometry="leg_r"
+            start="0"
+            end="4"/>
+        <trace_outline
+            id="line_leg_inner_l"
+            base_geometry="leg_l"
+            start="5"
+            end="9"/>
+        <trace_outline
+            id="line_leg_inner_r"
+            base_geometry="leg_r"
+            start="5"
+            end="9"/>
+    </layer>
+    <layer name="boobs">
+        <trace_outline
+            id="shadow_boob_l"
+            base_geometry="boob_l"
+            start="2"
+            end="4"/>
+        <trace_outline
+            id="shadow_boob_r"
+            base_geometry="boob_r"
+            start="2"
+            end="4"/>
+        <animation name="boobs_clothing_elasticity"/>
+    </layer>
+    <layer name="boobs_decorations">
+        <geometry id="nipples"/>
+        <trace_outline
+            id="line_cleavage_l"
+            base_geometry="boob_l"
+            start="0"
+            end="1"/>
+        <trace_outline
+            id="line_cleavage_r"
+            base_geometry="boob_r"
+            start="0"
+            end="1"/>
+        <trace_outline
+            id="line_boob_l"
+            base_geometry="boob_l"
+            start="2"
+            end="6"/>
+        <trace_outline
+            id="line_boob_r"
+            base_geometry="boob_r"
+            start="2"
+            end="6"/>
+    </layer>
+    <layer name="uniform">
+        <geometry id="uniform_shirt"/>
+        <animation name="uniform_skirt_length"/>
+        <geometry id="uniform_jacket"/>
+        <geometry id="uniform_shirt_collar"/>
+        <geometry id="uniform_bowtie"/>
+        <geometry id="uniform_shirt_collar_flaps_small"/>
+    </layer>
+    <layer name="uniform_boobs">
+        <animation name="uniform_boobs"/>
+    </layer>
+    <layer name="face">
+        <geometry id="face"/>
+        <trace_outline
+            id="line_face_l"
+            base_geometry="face_l"
+            start="0"
+            end="4"/>
+        <trace_outline
+            id="line_face_r"
+            base_geometry="face_r"
+            start="0"
+            end="4"/>
+    </layer>
+    <layer name="eyes">
+        <geometry id="eye_l"/>
+        <trace_outline
+            id="outline_eye_outline_l"
+            base_geometry="eye_outline_l"
+            start="0"
+            end="-1"/>
+        <trace_outline
+            id="outline_eye_outline_r"
+            base_geometry="eye_outline_r"
+            start="0"
+            end="-1"/>
+        <trace_outline
+            id="outline_eye_lid_l"
+            base_geometry="eye_lid_l"
+            start="0"
+            end="1"/>
+        <trace_outline
+            id="outline_eye_lid_2_l"
+            base_geometry="eye_lid_l"
+            start="-3"
+            end="-1"/>
+        <trace_outline
+            id="outline_eye_lid_r"
+            base_geometry="eye_lid_r"
+            start="0"
+            end="1"/>
+        <trace_outline
+            id="outline_eye_lid_2_r"
+            base_geometry="eye_lid_r"
+            start="-3"
+            end="-1"/>
+    </layer>
+    <layer name="face_decorations">
+        <geometry id="lips"/>
+        <geometry id="face_decorations"/>
+    </layer>
+    <layer name="hair_front">
+        <geometry id="hair1_front"/>
+        <trace_outline
+            id="line_hair1_front_l"
+            base_geometry="hair1_front_l"
+            start="0"
+            end="13"/>
+        <trace_outline
+            id="line_hair1_front_r"
+            base_geometry="hair1_front_r"
+            start="0"
+            end="7"/>
+    </layer>
+</layers>
+
+<animations>
+    <animation name="body_boobs" default="30">
+        <keyframe number="0" geometry="boobs0"/>
+        <keyframe number="50" geometry="boobs20"/>
+        <keyframe number="100" geometry="boobs100"/>
+    </animation>
+    <animation name="body_boobs_clothed" default="30">
+        <keyframe number="0" geometry="boobs0"/>
+        <keyframe number="40" geometry="boobs_clothed_20"/>
+        <keyframe number="100" geometry="boobs_clothed_100"/>
+    </animation>
+    <combined name="boobs_clothing_elasticity" default="0">
+         <animation name="body_boobs">
+    	       <keyframe number="0" weight="100"/>
+    	       <keyframe number="100" weight="0"/>
+        </animation>
+         <animation name="body_boobs_clothed">
+    	       <keyframe number="0" weight="0"/>
+    	       <keyframe number="100" weight="100"/>
+        </animation>
+    </combined>
+   <animation name="bra" default="30">
+		<keyframe number="0" geometry="bra0"/>
+		<keyframe number="100" geometry="bra100"/>
+	</animation>
+   <animation name="uniform_boobs" default="30">
+		<keyframe number="0" geometry="uniform_boobs_0"/>
+		<keyframe number="50" geometry="uniform_boobs_20"/>
+		<keyframe number="100" geometry="uniform_boobs_100"/>
+	</animation>
+   <animation name="uniform_skirt_length" default="70">
+		<keyframe number="0" geometry="uniform_skirt_0"/>
+		<keyframe number="101" geometry="uniform_skirt_100"/>
+	</animation>
+	<animation name="shoulders" default="50">
+		<keyframe number="0" geometry="torso_shoulders0"/>
+		<keyframe number="50" geometry="torso_base"/>
+		<keyframe number="100" geometry="torso_base"/>
+	</animation>
+	<animation name="waist" default="40">
+		<keyframe number="0" geometry="torso_waist0"/>
+		<keyframe number="50" geometry="torso_base"/>
+		<keyframe number="100" geometry="torso_waist100"/>
+	</animation>
+	<animation name="hips" default="40">
+		<keyframe number="0" geometry="torso_hips0"/>
+		<keyframe number="50" geometry="torso_base"/>
+		<keyframe number="100" geometry="torso_hips100"/>
+	</animation>
+    <combined name="torso" default="50">
+         <animation name="shoulders">
+    	       <keyframe number="0" weight="1"/>
+    	       <keyframe number="100" weight="1"/>
+        </animation>
+         <animation name="waist">
+    	       <keyframe number="0" weight="1"/>
+    	       <keyframe number="100" weight="1"/>
+        </animation>
+         <animation name="hips">
+    	       <keyframe number="0" weight="1"/>
+    	       <keyframe number="100" weight="1"/>
+        </animation>
+    </combined>
+</animations>
+</xml>
