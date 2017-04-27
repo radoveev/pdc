@@ -1,0 +1,4 @@
+*.pyd
+svglib/*
+simplesignals/*
+/paperdoll/__pycache__
