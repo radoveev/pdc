@@ -63,3 +63,9 @@ Paperdoll Creator is powered by Python 3.5.2 and Qt 5.7
 6. Open a command line/shell, type 'python' and press Enter. The version displayed in the info text above the python shell should be 3.5.[some number]. Type 'quit()' to close the python shell.
 7. Change the current directory of your shell to where 'launcher.py' is.
 8. Type 'python launcher.py' and press Enter to start Paperdoll Creator. *fingers crossed*
+
+
+# --------------------------
+# contact
+# --------------------------
+radoma@mail2tor.com
