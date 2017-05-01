@@ -2,6 +2,7 @@
 '''Paperdoll editor GUI module.
 '''
 
+
 # --------------------------------------------------------------------------- #
 # Import libraries
 # --------------------------------------------------------------------------- #
@@ -67,7 +68,7 @@ class VPaperDoll(VWidget):
     def __init__(self):
         VWidget.__init__(self)
         self.webview = QScrollingWebView()
-        self.lastpos = None
+#        self.lastpos = None
         # create layout
         self.setMinimumWidth(50)
         self.setMinimumHeight(50)
