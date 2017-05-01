@@ -560,14 +560,30 @@
     </combined>
 </animations>
 <dials>
-    <dial name="boobs_size" min="1" init="30" max="100">
+    <dial name="boobs_size" min="1" max="100">
         <animation name="body_boobs" min="0" init="30" max="100"/>
         <animation name="body_boobs_clothed" min="0" init="30" max="100"/>
         <animation name="uniform_boobs" min="0" init="30" max="100"/>
     </dial>
-    <dial name="clothing_elasticity" min="1" init="1" max="100">
+    <dial name="clothing_elasticity" min="1" max="100">
         <animation name="boobs_clothing_elasticity"
              min="0" init="0" max="100"/>
+    </dial>
+    <dial name="skirt_length" min="1" max="100">
+        <animation name="uniform_skirt_length"
+             min="0" init="70" max="100"/>
+    </dial>
+    <dial name="shoulders" min="1" max="100">
+        <animation name="shoulders"
+             min="0" init="50" max="100"/>
+    </dial>
+    <dial name="waist" min="1" max="100">
+        <animation name="waist"
+             min="0" init="40" max="100"/>
+    </dial>
+    <dial name="hips" min="1" max="100">
+        <animation name="hips"
+             min="0" init="40" max="100"/>
     </dial>
 </dials>
 </xml>
