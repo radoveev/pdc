@@ -567,7 +567,7 @@
     </dial>
     <dial name="clothing_elasticity" min="1" max="100">
         <animation name="boobs_clothing_elasticity"
-             min="0" init="0" max="100"/>
+             min="0" init="100" max="100"/>
     </dial>
     <dial name="skirt_length" min="1" max="100">
         <animation name="uniform_skirt_length"
