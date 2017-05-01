@@ -149,6 +149,7 @@ class VSliders(VWidget):
     def __init__(self):
         VWidget.__init__(self)
         self.sliders = {}
+        self.lastval = {}
         # create layout
         layout = QtWidgets.QFormLayout()
         self.setLayout(layout)
@@ -164,6 +165,7 @@ class VSliders(VWidget):
         slider.setMinimum(0)
         slider.setMaximum(100)
         slider.setValue(value)
+        self.lastval[slidername] = value
         # connect Qt signals
         slider.valueChanged.connect(self.on_slider_valueChanged)
         # add to layout
@@ -174,15 +176,16 @@ class VSliders(VWidget):
     @QtCore.pyqtSlot(int)
     def on_slider_valueChanged(self, sliderval):
         slidername = self.sender().objectName()
-        aniname = slidername[:-7]
-        data = {"field": aniname, "value": sliderval}
-        sisi.send(signal="set state", channel="editor", sender=self, data=data)
+        slider = self.sliders[slidername]
+        slider.setValue(self.lastval[slidername])
 
     def on__set_state(self, sender, data):
         if sender is not self:
             aniname = data["field"]
             value = data["value"]
-            slider = self.sliders[aniname + "_slider"]
+            slidername = aniname + "_slider"
+            slider = self.sliders[slidername]
+            self.lastval[slidername] = value
             slider.setValue(value)
 
 
@@ -268,12 +271,12 @@ class VEditorWindow(VBaseWindow):
         # create layout
         hbox = QtWidgets.QHBoxLayout()
         hbox.addWidget(self.doll, stretch=5)
+        hbox.addWidget(self.objectlist)
         dialbox = QtWidgets.QVBoxLayout()
         for dialview in self.dials:
             dialbox.addWidget(dialview)
         hbox.addLayout(dialbox)
         hbox.addWidget(self.sliders)
-        hbox.addWidget(self.objectlist)
         self.central.setLayout(hbox)
         self.setCentralWidget(self.central)
         # connect simple signals
