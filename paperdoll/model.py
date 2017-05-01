@@ -27,6 +27,100 @@ class MBase(object):
         pass
 
 
+#TODO fetch current animation state from the editor
+class MDial(MBase):
+    '''Controls one or more animation states.
+
+     #TODO feature proposal: dial
+     A dial is a layer of abstraction between animation states and the GUI.
+     Each dial has a specified range of integer values, usually from 1 to 100
+     and is controlled by the user via a slider. When the dial values changes
+     by one the states of the animations effected by that dial are modified.
+     The change in dial values does not have to translate 1:1 to the change
+     in animation state.
+     <dial name="boobs" start="1" end="100">
+         <animation name="" weight="1"/>
+     </dial>
+     '''
+    def __init__(self, name, minimum=1, initial=40, maximum=100):
+        MBase.__init__(self)
+        self.name = name
+        self.minimum = minimum
+        self.initial = initial
+        self.maximum = maximum
+        self.lastval = initial
+        self.animations = {}
+
+    @property
+    def value(self):
+        '''Returns the value of the dial based on stored animation values.'''
+        # the whole range of the dial is split between the animations
+        # according to their weight
+        # each segment is filled according to animation progress
+        dialrange = self.maximum - self.minimum
+        dialval = 0.0
+        weightsum = sum([animdata["weight"] for animdata
+                         in self.animations.values()])
+        for animname, animdata in self.animations.items():
+            # calculate the porting of slider value this animation represents
+            animportion = dialrange * animdata["weight"] / weightsum
+            # calculate animation progress
+            progress = ((animdata["state"] - animdata["minimum"]) /
+                        (animdata["maximum"] - animdata["minimum"]))
+            # adjust slider value
+            dialval += animportion * progress
+        return round(dialval)
+
+#    def animation_state(self, name):
+#        '''Returns the last known state for this animation.'''
+
+    def add_animation(self, name, minimum, initial, maximum):
+        animrange = maximum - minimum
+        dialrange = self.maximum - self.minimum
+        weight = animrange / dialrange
+        self.animations[name] = {"weight": weight, "value": initial,
+                                 "state": initial,
+                                 "minimum": minimum, "maximum": maximum}
+
+    def has_animation(self, name):
+        '''Returns True if this dial influences the state of this animation.'''
+        return name in self.animations
+
+    def update_animation_value(self, name, oldstate, newstate):
+        '''If the state of an animation changed we need to update its value.'''
+        statechange = newstate - oldstate
+        animdata = self.animations[name]
+        # calculate the new value of this animation
+        animval = (statechange * animdata["weight"]) + animdata["value"]
+        # limit the value and store it
+        animval = max(animval, animdata["minimum"])
+        animval = min(animval, animdata["maximum"])
+        animdata["value"] = animval
+        return animval
+
+    def change_value(self, dialval):
+        '''This changes the value of the dial to the specified number.'''
+        # limit the value change
+        dialval = max(dialval, self.minimum)
+        dialval = min(dialval, self.maximum)
+        if dialval == self.lastval:
+            return
+        # update the animations
+        for animname, animdata in self.animations.items():
+            animval = self.update_animation_value(animname, self.lastval,
+                                                  dialval)
+            # check if the new value is different from the current state
+            oldstate = animdata["state"]
+            newstate = round(animval)  # round to int
+            if oldstate != newstate:
+                animdata["state"] = newstate
+                print("animname", animname)
+                sisi.send(signal="set state", channel="editor", sender=self,
+                          data={"field": animname, "value": newstate})
+#            self.animations[animname] = animdata
+        self.lastval = dialval
+
+
 class MPaperdollEditor(MBase):
     '''Represents the state of the paperdoll editor application.
     '''
