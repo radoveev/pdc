@@ -34,7 +34,7 @@ log = logging.getLogger(__name__)
 # --------------------------------------------------------------------------- #
 def main():
     # set up logging
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.WARNING)
     log.info("")
     log.info("")
     log.info("Paperdoll editor")
