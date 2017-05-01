@@ -101,6 +101,8 @@ class VDial(VWidget):
         self.slider.setMinimum(self.model.minimum)
         self.slider.setMaximum(self.model.maximum)
         self.slider.setValue(self.model.initial)
+        intval = QtGui.QIntValidator(self.model.minimum, self.model.maximum)
+        self.lineedit.setValidator(intval)
 #        self.slider.setTracking(False)
         # create layout
         hbox = QtWidgets.QHBoxLayout()
@@ -125,14 +127,13 @@ class VDial(VWidget):
 
     @QtCore.pyqtSlot(int)
     def on_slider_valueChanged(self, newval):
-        self.model.change_value(newval)
+        newval = self.model.change_value(newval)
         self.on__update_dial_state(self, newval)  # update the dial GUI
 
     @QtCore.pyqtSlot()
     def on_lineedit_editingFinished(self):
         newval = int(self.lineedit.text())
-        print("text edited", newval)
-        self.model.change_value(newval)
+        newval = self.model.change_value(newval)
         self.on__update_dial_state(self, newval)  # update the dial GUI
 
     def on__update_dial_state(self, sender, data):

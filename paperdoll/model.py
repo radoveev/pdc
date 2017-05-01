@@ -99,10 +99,6 @@ class MDial(MBase):
         if dialchange is not 0:
             animval = (dialchange * animdata["weight"]) + animdata["value"]
         else:
-            oldval = animdata["value"]
-            newval = animchange + animdata["value"]
-            print("update animation", name, "because it state changed from",
-                  oldval , "to", newval)
             animval = animchange + animdata["value"]
         # limit the value and store it
         animval = max(animval, animdata["minimum"])
@@ -112,21 +108,16 @@ class MDial(MBase):
 
     def change_value(self, dialval):
         '''This changes the value of the dial to the specified number.'''
-        print("change", self.name, "to", dialval)
         # limit the value change
         dialval = max(dialval, self.minimum)
         dialval = min(dialval, self.maximum)
-        print("limited val", dialval)
         if dialval == self.lastval:
-            return
+            return dialval
         # update the animations
         statechange = dialval - self.lastval
-        print("update animations for a dial state change of", statechange)
         for animname, animdata in self.animations.items():
-            print(animname, "old val", self.animations[animname]["value"])
             animval = self.update_animation_value(animname,
                                                   dialchange=statechange)
-            print(animname, "new val", self.animations[animname]["value"])
             # check if the new value is different from the current state
             oldstate = editor.state[animname]
             newstate = round(animval)  # round to int
@@ -140,6 +131,7 @@ class MDial(MBase):
 #                sisi.connect(self.on__state_changed, signal="state changed",
 #                     channel="editor")
         self.lastval = dialval
+        return dialval
 
     def on__state_changed(self, sender, data):
         if self.ignore_state_change is True:
