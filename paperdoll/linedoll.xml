@@ -559,4 +559,11 @@
         </animation>
     </combined>
 </animations>
+<dials>
+    <dial name="boobsize" min="1" init="30" max="100">
+        <animation name="body_boobs" min="0" init="30" max="100"/>
+        <animation name="body_boobs_clothed" min="0" init="30" max="100"/>
+        <animation name="uniform_boobs" min="0" init="30" max="100"/>
+    </dial>
+</dials>
 </xml>

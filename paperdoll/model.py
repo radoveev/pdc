@@ -131,6 +131,7 @@ class MPaperdollEditor(MBase):
         self.layers = []
         self.dollgeometry = {}  # the geometry that was drawn last
         self.modified_styles = {}
+        self.dials = {}
         # parse paperdoll description file
         self.descfile.load_connectivity()
         self.descfile.load_geometry()
@@ -159,6 +160,24 @@ class MPaperdollEditor(MBase):
                     layercontent.append(data)
             self.layers.append({"name": name,
                                 "content": layercontent})
+        # load dials
+        log.info("Load dials")
+        xmllayers = self.descfile.tree.find("dials")
+        for xmlelem in xmllayers:
+            name = xmlelem.get("name", None)
+            minimum = int(xmlelem.get("min", None))
+            initial = int(xmlelem.get("init", None))
+            maximum = int(xmlelem.get("max", None))
+            dial = MDial(name, minimum=minimum, initial=initial,
+                         maximum=maximum)
+            self.dials[name] = dial
+            # add animations to dial
+            for xmlanim in xmlelem:
+                animname = xmlanim.get("name", None)
+                animmin = int(xmlanim.get("min", None))
+                animinit = int(xmlanim.get("init", None))
+                animmax = int(xmlanim.get("max", None))
+                dial.add_animation(animname, animmin, animinit, animmax)
         # initialize animation state
         for animname in self.animations:
             self.state[animname] = 40
