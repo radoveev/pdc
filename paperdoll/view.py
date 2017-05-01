@@ -100,7 +100,6 @@ class VDial(VWidget):
         # configure widgets
         self.slider.setMinimum(self.model.minimum)
         self.slider.setMaximum(self.model.maximum)
-        self.slider.setValue(self.model.initial)
         intval = QtGui.QIntValidator(self.model.minimum, self.model.maximum)
         self.lineedit.setValidator(intval)
 #        self.slider.setTracking(False)
@@ -274,6 +273,7 @@ class VEditorWindow(VBaseWindow):
         dialbox = QtWidgets.QVBoxLayout()
         for dialview in self.dials:
             dialbox.addWidget(dialview)
+        dialbox.addStretch()
         hbox.addLayout(dialbox)
         hbox.addWidget(self.sliders)
         self.central.setLayout(hbox)

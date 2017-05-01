@@ -41,13 +41,11 @@ class MDial(MBase):
          <animation name="" weight="1"/>
      </dial>
      '''
-    def __init__(self, name, minimum=1, initial=40, maximum=100):
+    def __init__(self, name, minimum=1, maximum=100):
         MBase.__init__(self)
         self.name = name
         self.minimum = minimum
-        self.initial = initial
         self.maximum = maximum
-        self.lastval = initial
         self.animations = {}
         self.ignore_state_change = False
         # connect simple signals
@@ -79,6 +77,7 @@ class MDial(MBase):
 #        '''Returns the last known state for this animation.'''
 
     def add_animation(self, name, minimum, initial, maximum):
+        # calculate weight
         animrange = maximum - minimum
         dialrange = self.maximum - self.minimum
         weight = animrange / dialrange
@@ -106,15 +105,16 @@ class MDial(MBase):
         animdata["value"] = animval
         return animval
 
-    def change_value(self, dialval):
+    def change_value(self, newval):
         '''This changes the value of the dial to the specified number.'''
+        oldval = self.value
         # limit the value change
-        dialval = max(dialval, self.minimum)
-        dialval = min(dialval, self.maximum)
-        if dialval == self.lastval:
-            return dialval
+        newval = max(newval, self.minimum)
+        newval = min(newval, self.maximum)
+        if oldval == newval:
+            return oldval
         # update the animations
-        statechange = dialval - self.lastval
+        statechange = newval - oldval
         for animname, animdata in self.animations.items():
             animval = self.update_animation_value(animname,
                                                   dialchange=statechange)
@@ -130,8 +130,10 @@ class MDial(MBase):
                 self.ignore_state_change = False
 #                sisi.connect(self.on__state_changed, signal="state changed",
 #                     channel="editor")
-        self.lastval = dialval
-        return dialval
+                # update the view
+                sisi.send(signal="update dial state", sender=self,
+                          data=newstate)
+        return newval
 
     def on__state_changed(self, sender, data):
         if self.ignore_state_change is True:
@@ -193,10 +195,8 @@ class MPaperdollEditor(MBase):
         for xmlelem in xmllayers:
             name = xmlelem.get("name", None)
             minimum = int(xmlelem.get("min", None))
-            initial = int(xmlelem.get("init", None))
             maximum = int(xmlelem.get("max", None))
-            dial = MDial(name, minimum=minimum, initial=initial,
-                         maximum=maximum)
+            dial = MDial(name, minimum=minimum, maximum=maximum)
             self.dials[name] = dial
             # add animations to dial
             for xmlanim in xmlelem:

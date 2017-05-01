@@ -57,9 +57,9 @@ def main():
     view.gui.centerOnScreen()
     view.gui.show()
     # draw the doll and define initial state
-    for anim in model.editor.animations.values():
-        data = {"field": anim.name, "value": anim.default_state}
-        sisi.send(signal="set state", channel="editor", sender=main, data=data)
+    for dial in model.editor.dials.values():
+        dial.change_value(dial.value + 1)
+        dial.change_value(dial.value - 1)
 #    print_state()
     # show GUI with Qt
     sys.exit(view.app.exec_())
