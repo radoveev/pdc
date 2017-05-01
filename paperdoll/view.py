@@ -86,8 +86,6 @@ class VSliders(VWidget):
         layout = QtWidgets.QFormLayout()
         self.setLayout(layout)
         # connect simple signals
-        sisi.connect(self.on__initialize_animations,
-                     signal="initialize animations")
         sisi.connect(self.on__set_state, signal="set state", channel="editor")
 
     def add_slider(self, aniname, value=50):
@@ -119,12 +117,6 @@ class VSliders(VWidget):
             value = data["value"]
             slider = self.sliders[aniname + "_slider"]
             slider.setValue(value)
-
-    def on__initialize_animations(self, data):
-        # create animation controls
-        animation_names = [(a.name, a) for a in data]
-        for aniname, ani in sorted(animation_names):
-            self.add_slider(aniname, ani.default_state)
 
 
 # define window classes
@@ -180,8 +172,9 @@ class VBaseWindow(VBase, QtWidgets.QMainWindow):
 class VEditorWindow(VBaseWindow):
     '''The main window of the paperdoll editor application.
     '''
-    def __init__(self):
+    def __init__(self, model):
         VBaseWindow.__init__(self)
+        self.model = model
         self.svgdoc = None  # the SVG document of the currently displayed doll
         # create widgets
         self.central = QtWidgets.QWidget()
@@ -194,6 +187,10 @@ class VEditorWindow(VBaseWindow):
         self.setWindowTitle("Paperdoll editor {}".format(version))
         self.objectlist.setHeaderHidden(True)
         self.objectlist.setIndentation(20)
+        # create animation controls
+        animation_names = [(a.name, a) for a in self.model.animations.values()]
+        for aniname, ani in sorted(animation_names):
+            self.sliders.add_slider(aniname, ani.default_state)
         # connect Qt signals
         self.exportsvg.triggered.connect(self.on_exportsvg_triggered)
         self.objectlist.clicked.connect(self.on_objectlist_clicked)

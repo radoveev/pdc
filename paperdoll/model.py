@@ -68,8 +68,6 @@ class MPaperdollEditor(MBase):
         # initialize animation state
         for animname in self.animations:
             self.state[animname] = 40
-        sisi.send(signal="initialize animations",
-                  data=list(self.animations.values()))
         # connect simple signals
         sisi.connect(self.on__set_state, signal="set state")
         sisi.connect(self.on__draw_doll, signal="draw doll")

@@ -42,15 +42,14 @@ def main():
     log.info("cwd %s", os.getcwd())
     # initialize signalling
     sisi.add_signals("doll drawn", "draw doll", "export doll",
-                     "initialize animations", "set state", "set style",
-                     "state changed")
+                     "set state", "set style", "state changed")
     sisi.add_channels("editor")
+    # create editor model
+    model.editor = model.MPaperdollEditor()
     # create Qt GUI
     view.version = __version__
     view.app = view.Application(sys.argv)
-    view.gui = view.VEditorWindow()
-    # create editor model
-    model.editor = model.MPaperdollEditor()
+    view.gui = view.VEditorWindow(model.editor)
     # display the gui
     log.info("Show main window")
     view.gui.resizeToScreen(width=0.5, height=0.8)
