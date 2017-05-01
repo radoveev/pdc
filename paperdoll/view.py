@@ -110,9 +110,10 @@ class VDial(VWidget):
         self.setLayout(hbox)
         # connect Qt signals
         self.slider.valueChanged.connect(self.on_slider_valueChanged)
+        self.lineedit.editingFinished.connect(self.on_lineedit_editingFinished)
         # connect simple signals
-        sisi.connect(self.on__state_changed, signal="state changed",
-                     channel="editor")
+        sisi.connect(self.on__update_dial_state, signal="update dial state",
+                     sender=self.model)
 #
 #    @property
 #    def minimum(self):
@@ -123,25 +124,22 @@ class VDial(VWidget):
 #        return self.slider.maximum()
 
     @QtCore.pyqtSlot(int)
-    def on_slider_valueChanged(self, sliderval):
-        self.model.change_value(sliderval)
+    def on_slider_valueChanged(self, newval):
+        self.model.change_value(newval)
+        self.on__update_dial_state(self, newval)  # update the dial GUI
 
-    def on__state_changed(self, sender, data):
-        if sender is self.model:
-            return
-        animname = data["field"]
-        if not self.model.has_animation(animname):
-            return
-        newstate = data["new"]
-        oldstate = data["old"]
-        # update the animation
-        self.model.update_animation_value(animname, oldstate, newstate)
-        # calculate new value of slider based on change in animation value
-        sliderval = self.model.value
-        # set the new slider value
+    @QtCore.pyqtSlot()
+    def on_lineedit_editingFinished(self):
+        newval = int(self.lineedit.text())
+        print("text edited", newval)
+        self.model.change_value(newval)
+        self.on__update_dial_state(self, newval)  # update the dial GUI
+
+    def on__update_dial_state(self, sender, data):
         self.slider.valueChanged.disconnect(self.on_slider_valueChanged)
-        self.slider.setValue(sliderval)
+        self.slider.setValue(data)
         self.slider.valueChanged.connect(self.on_slider_valueChanged)
+        self.lineedit.setText(str(data))
 
 
 class VSliders(VWidget):
@@ -444,6 +442,6 @@ class QSvgDocumentModel(QtGui.QStandardItemModel):
 # Declare module globals
 # --------------------------------------------------------------------------- #
 log = logging.getLogger(__name__)
-version = None  # the application version; set in __main__.py
-app = None  # the QApplication instance of this application; set in __main__.py
-gui = None  # the main window of this application; set in __main__.py
+version = None  # the application version; set in __init__.py
+app = None  # the QApplication instance of this application; set in __init__.py
+gui = None  # the main window of this application; set in __init__.py

@@ -27,7 +27,6 @@ class MBase(object):
         pass
 
 
-#TODO fetch current animation state from the editor
 class MDial(MBase):
     '''Controls one or more animation states.
 
@@ -50,6 +49,10 @@ class MDial(MBase):
         self.maximum = maximum
         self.lastval = initial
         self.animations = {}
+        self.ignore_state_change = False
+        # connect simple signals
+        sisi.connect(self.on__state_changed, signal="state changed",
+                     channel="editor")
 
     @property
     def value(self):
@@ -62,10 +65,11 @@ class MDial(MBase):
         weightsum = sum([animdata["weight"] for animdata
                          in self.animations.values()])
         for animname, animdata in self.animations.items():
+            animstate = editor.state[animname]
             # calculate the porting of slider value this animation represents
             animportion = dialrange * animdata["weight"] / weightsum
             # calculate animation progress
-            progress = ((animdata["state"] - animdata["minimum"]) /
+            progress = ((animstate - animdata["minimum"]) /
                         (animdata["maximum"] - animdata["minimum"]))
             # adjust slider value
             dialval += animportion * progress
@@ -79,19 +83,27 @@ class MDial(MBase):
         dialrange = self.maximum - self.minimum
         weight = animrange / dialrange
         self.animations[name] = {"weight": weight, "value": initial,
-                                 "state": initial,
                                  "minimum": minimum, "maximum": maximum}
 
-    def has_animation(self, name):
-        '''Returns True if this dial influences the state of this animation.'''
-        return name in self.animations
+#    def has_animation(self, name):
+#        '''Returns True if this dial influences the state of this animation.'''
+#        return name in self.animations
 
-    def update_animation_value(self, name, oldstate, newstate):
-        '''If the state of an animation changed we need to update its value.'''
-        statechange = newstate - oldstate
+    def update_animation_value(self, name, dialchange=0, animchange=0):
+        '''If a state changed we need to update the animation value.'''
+        if dialchange is 0 and animchange is 0:
+            raise ValueError("Do not update the animation value if neither " +
+                             "the dial state nor the animation state changed.")
         animdata = self.animations[name]
         # calculate the new value of this animation
-        animval = (statechange * animdata["weight"]) + animdata["value"]
+        if dialchange is not 0:
+            animval = (dialchange * animdata["weight"]) + animdata["value"]
+        else:
+            oldval = animdata["value"]
+            newval = animchange + animdata["value"]
+            print("update animation", name, "because it state changed from",
+                  oldval , "to", newval)
+            animval = animchange + animdata["value"]
         # limit the value and store it
         animval = max(animval, animdata["minimum"])
         animval = min(animval, animdata["maximum"])
@@ -100,25 +112,48 @@ class MDial(MBase):
 
     def change_value(self, dialval):
         '''This changes the value of the dial to the specified number.'''
+        print("change", self.name, "to", dialval)
         # limit the value change
         dialval = max(dialval, self.minimum)
         dialval = min(dialval, self.maximum)
+        print("limited val", dialval)
         if dialval == self.lastval:
             return
         # update the animations
+        statechange = dialval - self.lastval
+        print("update animations for a dial state change of", statechange)
         for animname, animdata in self.animations.items():
-            animval = self.update_animation_value(animname, self.lastval,
-                                                  dialval)
+            print(animname, "old val", self.animations[animname]["value"])
+            animval = self.update_animation_value(animname,
+                                                  dialchange=statechange)
+            print(animname, "new val", self.animations[animname]["value"])
             # check if the new value is different from the current state
-            oldstate = animdata["state"]
+            oldstate = editor.state[animname]
             newstate = round(animval)  # round to int
             if oldstate != newstate:
-                animdata["state"] = newstate
-                print("animname", animname)
+#                sisi.disconnect(self.on__state_changed, signal="state changed",
+#                     channel="editor")
+                self.ignore_state_change = True
                 sisi.send(signal="set state", channel="editor", sender=self,
                           data={"field": animname, "value": newstate})
-#            self.animations[animname] = animdata
+                self.ignore_state_change = False
+#                sisi.connect(self.on__state_changed, signal="state changed",
+#                     channel="editor")
         self.lastval = dialval
+
+    def on__state_changed(self, sender, data):
+        if self.ignore_state_change is True:
+            return
+        animname = data["field"]
+        if animname not in self.animations:
+            return
+        newstate = data["new"]
+        oldstate = data["old"]
+        # update the internal animation value
+        self.update_animation_value(animname, animchange=newstate - oldstate)
+        # calculate new value of slider based on change in animation value
+        # and send it to the view
+        sisi.send(signal="update dial state", sender=self, data=self.value)
 
 
 class MPaperdollEditor(MBase):
@@ -207,6 +242,10 @@ class MPaperdollEditor(MBase):
     @property
     def connectivity(self):
         return self.descfile.connectivity
+
+#    def animation_state(self, name):
+#        '''Returns the current state of the specified animation.'''
+#        return self.state[name]
 
     def load_geometry(self, geomid):
         geomelem = self.descfile.geometry.get(geomid, None)
@@ -565,3 +604,4 @@ torsostyle = svglib.Style("display:inline;fill:#eac6b6;fill-opacity:1;" +
               "stroke-miterlimit:4;stroke-dasharray:none;")
 bodystyle = svglib.Style("display:inline;fill:#eac6b6;fill-opacity:1;" +
              "fill-rule:evenodd;stroke:none;")
+editor = None  # the main model of this application; set in __init__.py
