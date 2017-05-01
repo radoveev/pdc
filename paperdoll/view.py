@@ -243,6 +243,7 @@ class VEditorWindow(VBaseWindow):
         VBaseWindow.__init__(self)
         self.model = model
         self.svgdoc = None  # the SVG document of the currently displayed doll
+        self.dials = []
         # create widgets
         self.central = QtWidgets.QWidget()
         self.doll = VPaperDoll()
@@ -255,6 +256,9 @@ class VEditorWindow(VBaseWindow):
         self.objectlist.setHeaderHidden(True)
         self.objectlist.setIndentation(20)
         # create animation controls
+        diallist = [(d.name, d) for d in self.model.dials.values()]
+        for dialname, dialmodel in sorted(diallist):
+            self.dials.append(VDial(dialmodel))
         animation_names = [(a.name, a) for a in self.model.animations.values()]
         for aniname, ani in sorted(animation_names):
             self.sliders.add_slider(aniname, ani.default_state)
@@ -264,6 +268,10 @@ class VEditorWindow(VBaseWindow):
         # create layout
         hbox = QtWidgets.QHBoxLayout()
         hbox.addWidget(self.doll, stretch=5)
+        dialbox = QtWidgets.QVBoxLayout()
+        for dialview in self.dials:
+            dialbox.addWidget(dialview)
+        hbox.addLayout(dialbox)
         hbox.addWidget(self.sliders)
         hbox.addWidget(self.objectlist)
         self.central.setLayout(hbox)
