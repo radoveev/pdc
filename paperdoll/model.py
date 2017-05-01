@@ -411,9 +411,16 @@ class MPaperdollEditor(MBase):
 
     def on__set_state(self, data):
         animname = data["field"]
-        framenum = data["value"]
-        data = {"old": self.state[animname], "new": framenum}
-        self.state[animname] = framenum
+        new = data["value"]
+        old = self.state[animname]
+        #TODO limit change
+        # ignore if operation doesn't change anything
+        if old == new:
+            return
+        # update internal state
+        self.state[animname] = new
+        # inform the world about state change
+        data = {"field": animname, "old": old, "new": new}
         sisi.send(signal="state changed", channel="editor", data=data)
 
     def on__draw_doll(self):
