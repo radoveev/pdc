@@ -42,7 +42,8 @@ def main():
     log.info("cwd %s", os.getcwd())
     # initialize signalling
     sisi.add_signals("doll drawn", "draw doll", "export doll",
-                     "set state", "set style", "state changed")
+                     "set state", "set style", "state changed",
+                     "update dial state")
     sisi.add_channels("editor")
     # create editor model
     model.editor = model.MPaperdollEditor()
