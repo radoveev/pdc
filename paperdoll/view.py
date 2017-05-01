@@ -77,6 +77,118 @@ class VPaperDoll(VWidget):
         self.setLayout(vbox)
 
 
+class VDial(VWidget):
+    '''Controls one or more animation states.
+
+     #TODO feature proposal: dial
+     A dial is a layer of abstraction between animation states and the GUI.
+     Each dial has a specified range of integer values, usually from 1 to 100
+     and is controlled by the user via a slider. When the dial values changes
+     by one the states of the animations effected by that dial are modified.
+     The change in dial values does not have to translate 1:1 to the change
+     in animation state.
+     <dial name="boobs" start="1" end="100">
+         <animation name="" weight="1"/>
+     </dial>
+     '''
+    def __init__(self, name, minimum=1, initial=40, maximum=100):
+        VWidget.__init__(self)
+        self.name = name
+        self.animations = {}
+        self.lastval = initial
+        self.slider = QtWidgets.QSlider(Qt.Horizontal)
+        self.lineedit = QtWidgets.QLineEdit()
+        # configure widgets
+        self.slider.setMinimum(minimum)
+        self.slider.setMaximum(maximum)
+        self.slider.setValue(initial)
+#        self.slider.setTracking(False)
+        # create layout
+        hbox = QtWidgets.QHBoxLayout()
+        hbox.addWidget(self.slider)
+        hbox.addWidget(self.lineedit)
+        self.setLayout(hbox)
+        # connect Qt signals
+        self.slider.valueChanged.connect(self.on_slider_valueChanged)
+        # connect simple signals
+        sisi.connect(self.on__initialize_animations,
+                     signal="initialize animations")
+        sisi.connect(self.on__set_state, signal="set state", channel="editor")
+
+    def add_animation(self, name, weight, minimum, initial, maximum):
+        self.animations["name"] = {"weight": weight, "initial": initial,
+                                   "minimum": minimum, "maximum": maximum}
+
+    def update_animation_value(self, name, oldstate, newstate):
+        statechange = newstate - oldstate
+        animdata = self.animations[name]
+        # calculate the new value of this animation
+        animval = (statechange * animdata["weight"]) + animdata["value"]
+        # limit the value and store it
+        animval = max(animval, animdata["minimum"])
+        animval = min(animval, animdata["maximum"])
+        animdata["value"] = animval
+        return animval
+
+    def calculate_slider_value(self):
+        '''Returns the value of the slider based on stored animation values.'''
+        # the whole range of the dial is split between the animations
+        # according to their weight
+        # each segment is filled according to animation progress
+        sliderrange = self.slider.maximum() - self.slider.minimum()
+        sliderval = 0.0
+        weightsum = sum([animdata["weight"] for animdata
+                         in self.animations.values()])
+        for animname, animdata in self.animations.items():
+            # calculate the porting of slider value this animation represents
+            animportion = sliderrange * animdata["weight"] / weightsum
+            # calculate animation progress
+            progress = ((animdata["state"] - animdata["minimum"]) /
+                        (animdata["maximum"] - animdata["minimum"]))
+            # adjust slider value
+            sliderval += animportion * progress
+        return round(sliderval)
+
+    @QtCore.pyqtSlot(int)
+    def on_slider_valueChanged(self, sliderval):
+        # update the animations
+        for animname, animdata in self.animations.items():
+            animval = self.update_animation_value(animname, self.lastval,
+                                                  sliderval)
+            # check if the new value is different from the current state
+            oldstate = animdata["state"]
+            newstate = round(animval)  # round to int
+            if oldstate != newstate:
+                animdata["state"] = newstate
+                sisi.send(signal="set state", channel="editor", sender=self,
+                          data={"field": animname, "value": newstate})
+#            self.animations[animname] = animdata
+        self.lastval = sliderval
+
+    def on__set_state(self, sender, data):
+        if sender is self:
+            return
+        animname = data["field"]
+        newstate = data["value"]
+        oldstate = self.animations[animname]["state"]
+        if oldstate == newstate:
+            return
+        # update the animation
+        self.update_animation_value(animname, oldstate, newstate)
+        # calculate new value of slider based on change in animation value
+        sliderval = self.calculate_slider_value()
+        # set the new slider value
+        self.slider.valueChanged.disconnect(self.on_slider_valueChanged)
+        self.slider.setValue(sliderval)
+        self.slider.valueChanged.connect(self.on_slider_valueChanged)
+
+    def on__initialize_animations(self, data):
+        # create animation controls
+        animation_names = [(a.name, a) for a in data]
+        for aniname, ani in sorted(animation_names):
+            self.add_slider(aniname, ani.default_state)
+
+
 class VSliders(VWidget):
     '''The sliders controlling animation settings.'''
     def __init__(self):
