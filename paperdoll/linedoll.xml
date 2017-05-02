@@ -203,8 +203,8 @@
         <import id="uni_jacket_decoration"/>
     </g>
     <g id="uniform_jacket_loose_l">
-        <import id="uni_jacket_loose_body_l"/>
         <use id="uni_jacket_arm_l"/>
+        <import id="uni_jacket_loose_body_l"/>
     </g>
     <g id="uniform_jacket_loose">
         <use id="uniform_jacket_loose_l"/>
