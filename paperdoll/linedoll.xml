@@ -227,6 +227,21 @@
         <mirror id="uni_jacket_boob100_r" axis="y"
          template="uni_jacket_boob100_l"/>
     </g>
+    <g id="shirt_boobs_0">
+        <import id="uni_shirt_boob0_l" connectivity="uni_boob_l"/>
+        <mirror id="uni_shirt_boob0_r" axis="y"
+         template="uni_shirt_boob0_l"/>
+    </g>
+    <g id="shirt_boobs_20">
+        <import id="uni_shirt_boob20_l" connectivity="uni_boob_l"/>
+        <mirror id="uni_shirt_boob20_r" axis="y"
+         template="uni_shirt_boob20_l"/>
+    </g>
+    <g id="shirt_boobs_100">
+        <import id="uni_shirt_boob100_l" connectivity="uni_boob_l"/>
+        <mirror id="uni_shirt_boob100_r" axis="y"
+         template="uni_shirt_boob100_l"/>
+    </g>
     <g id="uniform_skirt_0">
         <import id="uni_skirt_micro" connectivity="uni_skirt"/>
     </g>
@@ -422,6 +437,7 @@
     <layer name="uniform">
         <geometry id="uniform_shirt"/>
         <animation name="uniform_skirt_length"/>
+        <animation name="shirt_boobs"/>
         <geometry id="uniform_jacket"/>
         <geometry id="uniform_shirt_collar"/>
         <geometry id="uniform_bowtie"/>
@@ -525,6 +541,11 @@
 		<keyframe number="50" geometry="uniform_boobs_20"/>
 		<keyframe number="100" geometry="uniform_boobs_100"/>
 	</animation>
+   <animation name="shirt_boobs" default="30">
+		<keyframe number="0" geometry="shirt_boobs_0"/>
+		<keyframe number="50" geometry="shirt_boobs_20"/>
+		<keyframe number="100" geometry="shirt_boobs_100"/>
+	</animation>
    <animation name="uniform_skirt_length" default="70">
 		<keyframe number="0" geometry="uniform_skirt_0"/>
 		<keyframe number="101" geometry="uniform_skirt_100"/>
@@ -564,6 +585,7 @@
         <animation name="body_boobs" min="0" init="30" max="100"/>
         <animation name="body_boobs_clothed" min="0" init="30" max="100"/>
         <animation name="uniform_boobs" min="0" init="30" max="100"/>
+        <animation name="shirt_boobs" min="0" init="30" max="100"/>
     </dial>
     <dial name="clothing_elasticity" min="1" max="100">
         <animation name="boobs_clothing_elasticity"

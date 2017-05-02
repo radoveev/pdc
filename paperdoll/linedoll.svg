@@ -1580,6 +1580,29 @@
        id="uni_shirt_collar_flap_large_l"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccc" />
+    <path
+       style="display:inline;opacity:0.98000004;fill:#e6e6e6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.37795275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 40.228816,328.02771 C 40.091723,319.39916 62.345379,311.94868 74.335612,303.6634 86.325845,295.37812 100.40721,279.77479 98.36,254.81 95.656331,221.83997 71.771,212.09 64.128,203.6 62.479,201.77 59.662,198.23 58,196.09"
+       id="uni_shirt_boob100_l"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czssc"
+       inkscape:label="#uni_shirt_boob100_l"
+       transform="translate(0,6.29914)" />
+    <path
+       style="display:inline;opacity:0.98000004;fill:#e6e6e6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.37795275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       d="M 43.000002,260.09 C 44.982029,255.42711 48.581631,252.96259 53.182136,249.05384 57.782641,245.14509 62.782,239.88 63.868,227 64.791728,216.04456 62.578427,210.45409 58.473427,204.08909 57.521378,202.61289 57.107039,202.01167 56.443757,200.61297"
+       id="uni_shirt_boob20_l"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czssc"
+       inkscape:label="#uni_shirt_boob20_l"
+       transform="translate(0,6.29914)" />
+    <path
+       style="display:inline;opacity:0.98000004;fill:#e6e6e6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.37795275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       d="M 39.717687,230.50516 C 40.135771,229.54883 40.879875,227.78365 41.210821,227.07975 41.509545,226.44438 41.835551,225.12859 41.954269,223.89572 42.059768,222.80013 42.02603,221.74076 41.922506,220.98955 41.79962,220.09784 41.538482,218.9511 41.535482,218.2011"
+       id="uni_shirt_boob0_l"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssc"
+       inkscape:label="#uni_shirt_boob0_l" />
   </g>
   <g
      inkscape:groupmode="layer"
