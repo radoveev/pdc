@@ -685,6 +685,19 @@
          stdDeviation="1.913734"
          id="feGaussianBlur7781" />
     </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter5220"
+       x="-0.032220339"
+       width="1.0644407"
+       y="-0.019121542"
+       height="1.0382431">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.29703125"
+         id="feGaussianBlur5222" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -1267,6 +1280,44 @@
      id="layer38"
      inkscape:label="NippelDecoration"
      style="display:inline" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Underwear"
+     style="opacity:1">
+    <path
+       sodipodi:nodetypes="cccsccc"
+       inkscape:connector-curvature="0"
+       id="panties_body_L_l"
+       d="M 0,424 C 2.9490455,424.00392 4.1755864,428.16661 6.0081076,428.1943 6.0593788,424.097 9.2791319,415.8647 11.402097,412.32869 22.026625,391.3073 51.716796,391.29397 74.056886,382.51993 81.632759,379.54451 91.448794,375.189 91.055568,368.20451 90.903992,364.08925 90.616018,355.93534 88.294464,348.11964 90.619422,358.87037 11.010374,362.03257 0.0625,362"
+       style="display:inline;opacity:1;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:0.37795275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       style="display:inline;opacity:1;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:0.37795275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 0,424 C 2.9490455,424.00392 4.1755864,428.16661 6.0081076,428.1943 6.0593788,424.097 9.2791319,415.8647 11.402097,412.32869 22.380179,397.3177 36.96464,389.61459 54.089818,380.75216 61.31843,377.01129 69.951285,375.33284 70,371 70.069395,367.28249 70.189891,362.74876 69,356 69.866551,365.77846 11.010374,364.03257 0.0625,364"
+       id="panties_body_M_l"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccsccc" />
+    <path
+       sodipodi:nodetypes="cccsccc"
+       inkscape:connector-curvature="0"
+       id="panties_body_S_l"
+       d="M 0,424 C 2.9490455,424.00392 4.1755864,428.16661 6.0081076,428.1943 6.0593788,424.097 9.2791319,415.8647 11.402097,412.32869 18.491092,396.96415 27.71464,389.98959 42.089818,382.75216 49.35965,379.09204 56.911151,378.34931 57.116116,373.22097 57.373011,369.50346 57.456896,366.96437 56.779029,360.04419 57.424609,369.82265 11.010374,368.03257 0.0625,368"
+       style="display:inline;opacity:1;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:0.37795275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       transform="matrix(0.97881524,0,0,1.1574941,0,-73.455029)"
+       inkscape:label="#panties_shadow"
+       sodipodi:nodetypes="cccccc"
+       inkscape:connector-curvature="0"
+       id="panties_shadow"
+       d="M 6.3852704,434.62859 9.1947894,427.17715 0.31926354,405.72037 -9.1947894,426.31321 -5.1082163,430.63289 Z"
+       style="display:inline;opacity:0.36300001;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter10906)" />
+    <path
+       style="opacity:1;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.37795275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter5220)"
+       d="M 0,423.28125 C 0.15716918,423.28144 0.45133985,423.0706 1.1014555,423.04702 4.5109952,422.92338 6.3155116,420.74124 8.7500004,415.56248 12.601763,407.36883 18.340566,395.31248 22.125,386.43748 L 0,386 Z"
+       id="panties_top_l"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssccc" />
+  </g>
   <g
      inkscape:groupmode="layer"
      id="layer37"

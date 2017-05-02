@@ -174,6 +174,23 @@
         <import id="bra_cup100_l" connectivity="bra_cup_l"/>
         <mirror id="bra_cup100_r" axis="y" template="bra_cup100_l"/>
     </g>
+    <g id="panties_body_0">
+        <import id="panties_body_S_l" connectivity="panties_body_l"/>
+        <mirror id="panties_body_S_r" axis="y" template="panties_body_S_l"/>
+    </g>
+    <g id="panties_body_20">
+        <import id="panties_body_M_l" connectivity="panties_body_l"/>
+        <mirror id="panties_body_M_r" axis="y" template="panties_body_M_l"/>
+    </g>
+    <g id="panties_body_100">
+        <import id="panties_body_L_l" connectivity="panties_body_l"/>
+        <mirror id="panties_body_L_r" axis="y" template="panties_body_L_l"/>
+    </g>
+    <g id="panties_decoration">
+        <import id="panties_shadow"/>
+        <import id="panties_top_l"/>
+        <mirror id="panties_top_r" axis="y" template="panties_top_l"/>
+    </g>
     <g id="uniform_shirt_l">
         <import id="uni_shirt_arm_l"/>
         <import id="uni_shirt_body_l"/>
@@ -434,6 +451,10 @@
             start="2"
             end="6"/>
     </layer>
+    <layer name="underwear">
+        <animation name="panties"/>
+        <geometry id="panties_decoration"/>
+    </layer>
     <layer name="uniform">
         <geometry id="uniform_shirt"/>
         <animation name="uniform_skirt_length"/>
@@ -536,6 +557,11 @@
 		<keyframe number="0" geometry="bra0"/>
 		<keyframe number="100" geometry="bra100"/>
 	</animation>
+    <animation name="panties" default="40">
+        <keyframe number="0" geometry="panties_body_0"/>
+        <keyframe number="50" geometry="panties_body_20"/>
+        <keyframe number="100" geometry="panties_body_100"/>
+    </animation>
    <animation name="uniform_boobs" default="30">
 		<keyframe number="0" geometry="uniform_boobs_0"/>
 		<keyframe number="50" geometry="uniform_boobs_20"/>
@@ -605,6 +631,8 @@
     </dial>
     <dial name="hips" min="1" max="100">
         <animation name="hips"
+             min="0" init="40" max="100"/>
+        <animation name="panties"
              min="0" init="40" max="100"/>
     </dial>
 </dials>
