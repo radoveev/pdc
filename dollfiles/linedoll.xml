@@ -259,11 +259,23 @@
         <mirror id="uni_shirt_boob100_r" axis="y"
          template="uni_shirt_boob100_l"/>
     </g>
-    <g id="uniform_skirt_0">
-        <import id="uni_skirt_micro" connectivity="uni_skirt"/>
+    <g id="uniform_skirt_XS_0">
+        <import id="uni_skirt_XS_micro" connectivity="uni_skirt"/>
     </g>
-    <g id="uniform_skirt_100">
-        <import id="uni_skirt_long" connectivity="uni_skirt"/>
+    <g id="uniform_skirt_XS_100">
+        <import id="uni_skirt_XS_long" connectivity="uni_skirt"/>
+    </g>
+    <g id="uniform_skirt_M_0">
+        <import id="uni_skirt_M_micro" connectivity="uni_skirt"/>
+    </g>
+    <g id="uniform_skirt_M_100">
+        <import id="uni_skirt_M_long" connectivity="uni_skirt"/>
+    </g>
+    <g id="uniform_skirt_XL_0">
+        <import id="uni_skirt_XL_micro" connectivity="uni_skirt"/>
+    </g>
+    <g id="uniform_skirt_XL_100">
+        <import id="uni_skirt_XL_long" connectivity="uni_skirt"/>
     </g>
 </geometry>
 <connectivity>
@@ -457,7 +469,7 @@
     </layer>
     <layer name="uniform">
         <geometry id="uniform_shirt"/>
-        <animation name="uniform_skirt_length"/>
+        <animation name="uniform_skirt_hips"/>
         <animation name="shirt_boobs"/>
         <geometry id="uniform_jacket"/>
         <geometry id="uniform_shirt_collar"/>
@@ -573,10 +585,35 @@
 		<keyframe number="50" geometry="shirt_boobs_20"/>
 		<keyframe number="100" geometry="shirt_boobs_100"/>
 	</animation>
-   <animation name="uniform_skirt_length" default="70">
-		<keyframe number="0" geometry="uniform_skirt_0"/>
-		<keyframe number="101" geometry="uniform_skirt_100"/>
+   <animation name="uniform_skirt_XS_length" default="70">
+		<keyframe number="0" geometry="uniform_skirt_XS_0"/>
+		<keyframe number="101" geometry="uniform_skirt_XS_100"/>
 	</animation>
+   <animation name="uniform_skirt_M_length" default="70">
+		<keyframe number="0" geometry="uniform_skirt_M_0"/>
+		<keyframe number="101" geometry="uniform_skirt_M_100"/>
+	</animation>
+   <animation name="uniform_skirt_XL_length" default="70">
+		<keyframe number="0" geometry="uniform_skirt_XL_0"/>
+		<keyframe number="101" geometry="uniform_skirt_XL_100"/>
+	</animation>
+    <combined name="uniform_skirt_hips" default="70">
+         <animation name="uniform_skirt_XS_length">
+    	       <keyframe number="0" weight="100"/>
+    	       <keyframe number="50" weight="0"/>
+    	       <keyframe number="100" weight="0"/>
+        </animation>
+         <animation name="uniform_skirt_M_length">
+    	       <keyframe number="0" weight="0"/>
+    	       <keyframe number="50" weight="100"/>
+    	       <keyframe number="100" weight="0"/>
+        </animation>
+         <animation name="uniform_skirt_XL_length">
+    	       <keyframe number="0" weight="0"/>
+    	       <keyframe number="50" weight="0"/>
+    	       <keyframe number="100" weight="100"/>
+        </animation>
+    </combined>
 	<animation name="shoulders" default="50">
 		<keyframe number="0" geometry="torso_shoulders0"/>
 		<keyframe number="50" geometry="torso_base"/>
@@ -620,7 +657,11 @@
              min="0" init="100" max="100"/>
     </dial>
     <dial name="skirt_length" min="1" max="100">
-        <animation name="uniform_skirt_length"
+        <animation name="uniform_skirt_XS_length"
+             min="0" init="70" max="100"/>
+        <animation name="uniform_skirt_M_length"
+             min="0" init="70" max="100"/>
+        <animation name="uniform_skirt_XL_length"
              min="0" init="70" max="100"/>
     </dial>
     <dial name="shoulders" min="1" max="100">
@@ -635,6 +676,8 @@
         <animation name="hips"
              min="0" init="40" max="100"/>
         <animation name="panties"
+             min="0" init="40" max="100"/>
+        <animation name="uniform_skirt_hips"
              min="0" init="40" max="100"/>
     </dial>
 </dials>
