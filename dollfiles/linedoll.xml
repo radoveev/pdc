@@ -166,13 +166,44 @@
             <default offset="dynamic" anchor="boob_outer_r"/>
         </conform>
     </g>
-    <g id="bra0">
-        <import id="bra_cup0_l" connectivity="bra_cup_l"/>
-        <mirror id="bra_cup0_r" axis="y" template="bra_cup0_l"/>
+    <g id="bra0_top">
+        <import id="simple_bra_cup_0_l" connectivity="bra_cup_l"/>
+        <mirror id="simple_bra_cup_0_r" axis="y"
+             template="simple_bra_cup_0_l"/>
+        <import id="simple_bra_strap_0_l" connectivity="bra_strap_l"/>
+        <mirror id="simple_bra_strap_0_r" axis="y"
+             template="simple_bra_strap_0_l"/>
     </g>
-    <g id="bra100">
-        <import id="bra_cup100_l" connectivity="bra_cup_l"/>
-        <mirror id="bra_cup100_r" axis="y" template="bra_cup100_l"/>
+    <g id="bra20_top">
+        <import id="simple_bra_cup_20_l" connectivity="bra_cup_l"/>
+        <mirror id="simple_bra_cup_20_r" axis="y"
+             template="simple_bra_cup_20_l"/>
+        <import id="simple_bra_strap_20_l" connectivity="bra_strap_l"/>
+        <mirror id="simple_bra_strap_20_r" axis="y"
+             template="simple_bra_strap_20_l"/>
+    </g>
+    <g id="bra100_top">
+        <import id="simple_bra_cup_100_l" connectivity="bra_cup_l"/>
+        <mirror id="simple_bra_cup_100_r" axis="y"
+             template="simple_bra_cup_100_l"/>
+        <import id="simple_bra_strap_100_l" connectivity="bra_strap_l"/>
+        <mirror id="simple_bra_strap_100_r" axis="y"
+             template="simple_bra_strap_100_l"/>
+    </g>
+    <g id="bra0_back">
+        <import id="simple_bra_back_0_l" connectivity="bra_back_l"/>
+        <mirror id="simple_bra_back_0_r" axis="y"
+             template="simple_bra_back_0_l"/>
+    </g>
+    <g id="bra20_back">
+        <import id="simple_bra_back_20_l" connectivity="bra_back_l"/>
+        <mirror id="simple_bra_back_20_r" axis="y"
+             template="simple_bra_back_20_l"/>
+    </g>
+    <g id="bra100_back">
+        <import id="simple_bra_back_100_l" connectivity="bra_back_l"/>
+        <mirror id="simple_bra_back_100_r" axis="y"
+             template="simple_bra_back_100_l"/>
     </g>
     <g id="panties_body_0">
         <import id="panties_body_S_l" connectivity="panties_body_l"/>
@@ -343,7 +374,6 @@
         <node id="boob_shoulder_l"/>
         <node id="cleavage_upper"/>
     </circular>
-    <circular id="bra_cup_l"/>
 </connectivity>
 <layers>
     <layer name="hair_back">
@@ -403,6 +433,8 @@
             base_geometry="torso_r"
             start="6"
             end="10"/>
+
+        <animation name="bra_back"/>
     </layer>
     <layer name="legs">
         <geometry id="legs"/>
@@ -428,6 +460,7 @@
             end="9"/>
     </layer>
     <layer name="boobs">
+        <!-- all elements here have their style changed -->
         <trace_outline
             id="shadow_boob_l"
             base_geometry="boob_l"
@@ -462,10 +495,12 @@
             base_geometry="boob_r"
             start="2"
             end="6"/>
+
     </layer>
     <layer name="underwear">
         <animation name="panties"/>
         <geometry id="panties_decoration"/>
+        <animation name="bra"/>
     </layer>
     <layer name="uniform">
         <geometry id="uniform_shirt"/>
@@ -555,7 +590,7 @@
         <keyframe number="40" geometry="boobs_clothed_20"/>
         <keyframe number="100" geometry="boobs_clothed_100"/>
     </animation>
-    <combined name="boobs_clothing_elasticity" default="0"
+    <combined name="boobs_clothing_elasticity" default="100">
          geoid="('boob_l', 'boob_r')">
          <animation name="body_boobs">
     	       <keyframe number="0" weight="100"/>
@@ -567,8 +602,15 @@
         </animation>
     </combined>
    <animation name="bra" default="30">
-		<keyframe number="0" geometry="bra0"/>
-		<keyframe number="100" geometry="bra100"/>
+		<keyframe number="0" geometry="bra0_top"/>
+		<keyframe number="40" geometry="bra20_top"/>
+		<keyframe number="100" geometry="bra100_top"/>
+	</animation>
+   <animation name="bra_back" default="30">
+		<keyframe number="0" geometry="bra0_back"/>
+		<keyframe number="40" geometry="bra20_back"/>
+		<keyframe number="80" geometry="bra100_back"/>
+		<keyframe number="100" geometry="bra100_back"/>
 	</animation>
     <animation name="panties" default="40">
         <keyframe number="0" geometry="panties_body_0"/>
@@ -651,11 +693,14 @@
         <animation name="body_boobs_clothed" min="0" init="30" max="100"/>
         <animation name="uniform_boobs" min="0" init="30" max="100"/>
         <animation name="shirt_boobs" min="0" init="30" max="100"/>
+        <animation name="bra" min="0" init="30" max="100"/>
+        <animation name="bra_back" min="0" init="30" max="100"/>
     </dial>
     <dial name="clothing_elasticity" min="1" max="100">
         <animation name="boobs_clothing_elasticity"
              min="0" init="100" max="100"/>
     </dial>
+
     <dial name="skirt_length" min="1" max="100">
         <animation name="uniform_skirt_XS_length"
              min="0" init="70" max="100"/>
