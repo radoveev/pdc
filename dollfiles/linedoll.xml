@@ -109,6 +109,7 @@
         <mirror id="labia_inner_r" axis="y" template="labia_inner_l"/>
         <import id="labia_outer_l"/>
         <mirror id="labia_outer_r" axis="y" template="labia_outer_l"/>
+        <import id="pubes_triangle_wavy"/>
     </g>
     <g id="boobs_clothed_20">
         <import id="boob_clothed_20_l" connectivity="boob_l"/>
