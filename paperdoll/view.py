@@ -19,34 +19,6 @@ import simplesignals as sisi
 # --------------------------------------------------------------------------- #
 # Define classes
 # --------------------------------------------------------------------------- #
-class QScrollingWebView(QtWebEngineWidgets.QWebEngineView):
-    def __init__(self, *args, **kwargs):
-        QtWebEngineWidgets.QWebEngineView.__init__(self, *args, **kwargs)
-
-    def wheelEvent(self, event):
-        angledelta = event.angleDelta().y()
-        pos = event.pos()
-        evx, evy = pos.x(), pos.y()
-#        if angledelta > 0:
-#            scrollstep = 10
-#        else:
-#            scrollstep = -10
-        page = self.page()
-        if event.modifiers() == Qt.ControlModifier:
-            zoom = self.zoomFactor()
-            if angledelta > 0:
-                zoom = min(zoom + 0.125, 5.0)
-            else:
-                zoom = max(zoom - 0.125, 0.25)
-            self.setZoomFactor(zoom)
-            page.runJavaScript("window.scrollTo(%s, %s);" % (evx, evy))
-#        elif event.modifiers() == Qt.ShiftModifier:
-#            page.runJavaScript("window.scrollBy(%s, 0);" % scrollstep)
-#        else:
-#            page.runJavaScript("window.scrollBy(0, %s);" % scrollstep)
-        event.accept()
-
-
 class VBase(object):
     '''Base class for views, which are classes displaying data in a widget.
     '''
@@ -437,6 +409,34 @@ class QSvgDocumentModel(QtGui.QStandardItemModel):
 ##        print("style after", str(elem.style), type(elem.style))
 #        self.modified_style[elem.elemid] = elem.style
 #        #TODO modify the model via signals, do not store state here
+
+
+class QScrollingWebView(QtWebEngineWidgets.QWebEngineView):
+    def __init__(self, *args, **kwargs):
+        QtWebEngineWidgets.QWebEngineView.__init__(self, *args, **kwargs)
+
+    def wheelEvent(self, event):
+        angledelta = event.angleDelta().y()
+        pos = event.pos()
+        evx, evy = pos.x(), pos.y()
+#        if angledelta > 0:
+#            scrollstep = 10
+#        else:
+#            scrollstep = -10
+        page = self.page()
+        if event.modifiers() == Qt.ControlModifier:
+            zoom = self.zoomFactor()
+            if angledelta > 0:
+                zoom = min(zoom + 0.125, 5.0)
+            else:
+                zoom = max(zoom - 0.125, 0.25)
+            self.setZoomFactor(zoom)
+            page.runJavaScript("window.scrollTo(%s, %s);" % (evx, evy))
+#        elif event.modifiers() == Qt.ShiftModifier:
+#            page.runJavaScript("window.scrollBy(%s, 0);" % scrollstep)
+#        else:
+#            page.runJavaScript("window.scrollBy(0, %s);" % scrollstep)
+        event.accept()
 
 
 # --------------------------------------------------------------------------- #
