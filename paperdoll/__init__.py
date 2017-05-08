@@ -56,10 +56,11 @@ def main():
     view.gui.resizeToScreen(width=0.5, height=0.8)
     view.gui.centerOnScreen()
     view.gui.show()
-    # draw the doll and define initial state
+    # define initial state and draw the doll
     for dial in model.editor.dials.values():
         dial.change_value(dial.value + 1)
         dial.change_value(dial.value - 1)
+    sisi.send(signal="draw doll")
 #    print_state()
     # show GUI with Qt
     sys.exit(view.app.exec_())

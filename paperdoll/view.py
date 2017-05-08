@@ -19,6 +19,42 @@ import simplesignals as sisi
 # --------------------------------------------------------------------------- #
 # Define classes
 # --------------------------------------------------------------------------- #
+class DrawSchedule(QtCore.QObject):
+    '''Initiates a redraw when no state change has happened for some time.
+    '''
+    def __init__(self, delay=10, parent=None):
+        QtCore.QObject.__init__(self, parent=parent)
+        # the time in milliseconds we wait for state changes
+        # before we start a redraw
+        self.delay = delay
+        # the number of changes that occurred
+        self.changecount = 0
+        # connect simple signals
+        sisi.connect(self.on__state_changed, signal="state changed",
+                     channel="editor")
+
+    @QtCore.pyqtSlot()
+    def attempt_redraw(self):
+        '''Start a redraw if changeid is the id of the last state change.'''
+        # the delay for the first change is up, so we update the changecount
+        self.changecount -= 1
+        # has the time delay for all changes passed?
+        if self.changecount is 0:
+            sisi.send(signal="draw doll")
+
+    def on__state_changed(self):
+        # remember that a change occurred
+        self.changecount += 1
+        # each time the state is changed we start waiting again
+        QtCore.QTimer.singleShot(self.delay, self.attempt_redraw)
+#        timer = QtCore.QTimer(self)
+#        timer.timeout.connect(self.attempt_redraw)
+#        timer.setSingleShot(True)
+#        timer.start(self.delay)
+#        t = threading.Timer(self.delay, self.attempt_redraw, [self.changeid])
+#        t.start()
+
+
 class VBase(object):
     '''Base class for views, which are classes displaying data in a widget.
     '''
@@ -251,8 +287,6 @@ class VEditorWindow(VBaseWindow):
         self.central.setLayout(hbox)
         self.setCentralWidget(self.central)
         # connect simple signals
-        sisi.connect(self.on__state_changed, signal="state changed",
-                     channel="editor")
         sisi.connect(self.on__doll_drawn, signal="doll drawn")
 
     def render_doll(self):
@@ -299,9 +333,6 @@ class VEditorWindow(VBaseWindow):
                     sisi.send(signal="set style", data=data)
         sisi.send(signal="draw doll")
         #TODO fix making lines invisible (their style does not have "display")
-
-    def on__state_changed(self):
-        sisi.send(signal="draw doll")
 
     def on__doll_drawn(self, data):
         # update current model
@@ -443,6 +474,7 @@ class QScrollingWebView(QtWebEngineWidgets.QWebEngineView):
 # Declare module globals
 # --------------------------------------------------------------------------- #
 log = logging.getLogger(__name__)
+draw_schedule = DrawSchedule()
 version = None  # the application version; set in __init__.py
 app = None  # the QApplication instance of this application; set in __init__.py
 gui = None  # the main window of this application; set in __init__.py
