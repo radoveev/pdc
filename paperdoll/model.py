@@ -165,7 +165,10 @@ class MPaperdollEditor(MBase):
         self.animations = {}
         self.dials = {}
         # parse paperdoll ressource files
-        self.load_doll_file("../paperdoll/linedoll.xml")
+        dolldir = Path("../dollfiles").resolve()
+        for descfilepath in dolldir.glob("*.xml"):
+            self.load_doll_file(descfilepath)
+#            self.load_doll_file("../paperdoll/linedoll.xml")
         # initialize animation state
         for animname in self.animations:
             self.state[animname] = 40
