@@ -178,6 +178,7 @@
             <default offset="dynamic" anchor="boob_outer_r"/>
         </conform>
     </g>
+
     <g id="bra0_top">
         <import id="simple_bra_cup_0_l" connectivity="bra_cup_l"/>
         <mirror id="simple_bra_cup_0_r" axis="y"
