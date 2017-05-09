@@ -223,92 +223,6 @@
         <import id="panties_top_l"/>
         <mirror id="panties_top_r" axis="y" template="panties_top_l"/>
     </g>
-    <g id="uniform_shirt_l">
-        <import id="uni_shirt_arm_l"/>
-        <import id="uni_shirt_body_l"/>
-    </g>
-    <g id="uniform_shirt">
-        <use id="uniform_shirt_l"/>
-        <mirror id="uniform_shirt_r" axis="y" template="uniform_shirt_l"/>
-        <import id="uni_shirt_decorations"/>
-    </g>
-    <g id="uniform_bowtie">
-        <import id="uni_bowtie_soft_l"/>
-        <mirror id="uni_bowtie_r" axis="y" template="uni_bowtie_soft_l"/>
-    </g>
-    <g id="uniform_shirt_collar">
-        <import id="uni_shirt_collar"/>
-    </g>
-    <g id="uniform_shirt_collar_flaps_small">
-        <import id="uni_shirt_collar_flaps_small"/>
-    </g>
-    <g id="uniform_jacket_l">
-        <import id="uni_jacket_arm_l"/>
-        <import id="uni_jacket_body_l"/>
-    </g>
-    <g id="uniform_jacket">
-        <use id="uniform_jacket_l"/>
-        <mirror id="uniform_jacket_r" axis="y" template="uniform_jacket_l"/>
-        <import id="uni_jacket_decoration"/>
-    </g>
-    <g id="uniform_jacket_loose_l">
-        <use id="uni_jacket_arm_l"/>
-        <import id="uni_jacket_loose_body_l"/>
-    </g>
-    <g id="uniform_jacket_loose">
-        <use id="uniform_jacket_loose_l"/>
-        <mirror id="uniform_jacket_loose_r" axis="y"
-         template="uniform_jacket_loose_l"/>
-        <import id="uni_jacket_loose_decoration"/>
-    </g>
-    <g id="uniform_boobs_0">
-        <import id="uni_jacket_boob0_l" connectivity="uni_boob_l"/>
-        <mirror id="uni_jacket_boob0_r" axis="y"
-         template="uni_jacket_boob0_l"/>
-    </g>
-    <g id="uniform_boobs_20">
-        <import id="uni_jacket_boob20_l" connectivity="uni_boob_l"/>
-        <mirror id="uni_jacket_boob20_r" axis="y"
-         template="uni_jacket_boob20_l"/>
-    </g>
-    <g id="uniform_boobs_100">
-        <import id="uni_jacket_boob100_l" connectivity="uni_boob_l"/>
-        <mirror id="uni_jacket_boob100_r" axis="y"
-         template="uni_jacket_boob100_l"/>
-    </g>
-    <g id="shirt_boobs_0">
-        <import id="uni_shirt_boob0_l" connectivity="uni_boob_l"/>
-        <mirror id="uni_shirt_boob0_r" axis="y"
-         template="uni_shirt_boob0_l"/>
-    </g>
-    <g id="shirt_boobs_20">
-        <import id="uni_shirt_boob20_l" connectivity="uni_boob_l"/>
-        <mirror id="uni_shirt_boob20_r" axis="y"
-         template="uni_shirt_boob20_l"/>
-    </g>
-    <g id="shirt_boobs_100">
-        <import id="uni_shirt_boob100_l" connectivity="uni_boob_l"/>
-        <mirror id="uni_shirt_boob100_r" axis="y"
-         template="uni_shirt_boob100_l"/>
-    </g>
-    <g id="uniform_skirt_XS_0">
-        <import id="uni_skirt_XS_micro" connectivity="uni_skirt"/>
-    </g>
-    <g id="uniform_skirt_XS_100">
-        <import id="uni_skirt_XS_long" connectivity="uni_skirt"/>
-    </g>
-    <g id="uniform_skirt_M_0">
-        <import id="uni_skirt_M_micro" connectivity="uni_skirt"/>
-    </g>
-    <g id="uniform_skirt_M_100">
-        <import id="uni_skirt_M_long" connectivity="uni_skirt"/>
-    </g>
-    <g id="uniform_skirt_XL_0">
-        <import id="uni_skirt_XL_micro" connectivity="uni_skirt"/>
-    </g>
-    <g id="uniform_skirt_XL_100">
-        <import id="uni_skirt_XL_long" connectivity="uni_skirt"/>
-    </g>
 </geometry>
 <connectivity>
     <mirror template_suffix="_l" mirror_suffix="_r"/>
@@ -503,18 +417,7 @@
         <geometry id="panties_decoration"/>
         <animation name="bra"/>
     </layer>
-    <layer name="uniform">
-        <geometry id="uniform_shirt"/>
-        <animation name="uniform_skirt_hips"/>
-        <animation name="shirt_boobs"/>
-        <geometry id="uniform_jacket"/>
-        <geometry id="uniform_shirt_collar"/>
-        <geometry id="uniform_bowtie"/>
-        <geometry id="uniform_shirt_collar_flaps_small"/>
-    </layer>
-    <layer name="uniform_boobs">
-        <animation name="uniform_boobs"/>
-    </layer>
+
     <layer name="face">
         <geometry id="face"/>
         <trace_outline
@@ -618,45 +521,6 @@
         <keyframe number="50" geometry="panties_body_20"/>
         <keyframe number="100" geometry="panties_body_100"/>
     </animation>
-   <animation name="uniform_boobs" default="30">
-		<keyframe number="0" geometry="uniform_boobs_0"/>
-		<keyframe number="50" geometry="uniform_boobs_20"/>
-		<keyframe number="100" geometry="uniform_boobs_100"/>
-	</animation>
-   <animation name="shirt_boobs" default="30">
-		<keyframe number="0" geometry="shirt_boobs_0"/>
-		<keyframe number="50" geometry="shirt_boobs_20"/>
-		<keyframe number="100" geometry="shirt_boobs_100"/>
-	</animation>
-   <animation name="uniform_skirt_XS_length" default="70">
-		<keyframe number="0" geometry="uniform_skirt_XS_0"/>
-		<keyframe number="101" geometry="uniform_skirt_XS_100"/>
-	</animation>
-   <animation name="uniform_skirt_M_length" default="70">
-		<keyframe number="0" geometry="uniform_skirt_M_0"/>
-		<keyframe number="101" geometry="uniform_skirt_M_100"/>
-	</animation>
-   <animation name="uniform_skirt_XL_length" default="70">
-		<keyframe number="0" geometry="uniform_skirt_XL_0"/>
-		<keyframe number="101" geometry="uniform_skirt_XL_100"/>
-	</animation>
-    <combined name="uniform_skirt_hips" default="70">
-         <animation name="uniform_skirt_XS_length">
-    	       <keyframe number="0" weight="100"/>
-    	       <keyframe number="50" weight="0"/>
-    	       <keyframe number="100" weight="0"/>
-        </animation>
-         <animation name="uniform_skirt_M_length">
-    	       <keyframe number="0" weight="0"/>
-    	       <keyframe number="50" weight="100"/>
-    	       <keyframe number="100" weight="0"/>
-        </animation>
-         <animation name="uniform_skirt_XL_length">
-    	       <keyframe number="0" weight="0"/>
-    	       <keyframe number="50" weight="0"/>
-    	       <keyframe number="100" weight="100"/>
-        </animation>
-    </combined>
 	<animation name="shoulders" default="50">
 		<keyframe number="0" geometry="torso_shoulders0"/>
 		<keyframe number="50" geometry="torso_base"/>
@@ -692,8 +556,6 @@
     <dial name="boobs_size" min="1" max="100">
         <animation name="body_boobs" min="0" init="30" max="100"/>
         <animation name="body_boobs_clothed" min="0" init="30" max="100"/>
-        <animation name="uniform_boobs" min="0" init="30" max="100"/>
-        <animation name="shirt_boobs" min="0" init="30" max="100"/>
         <animation name="bra" min="0" init="30" max="100"/>
         <animation name="bra_back" min="0" init="30" max="100"/>
     </dial>
