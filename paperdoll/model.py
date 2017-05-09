@@ -249,10 +249,13 @@ class MPaperdollEditor(MBase):
         xmllayers = descfile.tree.find("dials")
         for xmlelem in xmllayers:
             name = xmlelem.get("name", None)
-            minimum = int(xmlelem.get("min", None))
-            maximum = int(xmlelem.get("max", None))
-            dial = MDial(name, minimum=minimum, maximum=maximum)
-            self.dials[name] = dial
+            if name in self.dials:
+                dial = self.dials[name]
+            else:
+                minimum = int(xmlelem.get("min", None))
+                maximum = int(xmlelem.get("max", None))
+                dial = MDial(name, minimum=minimum, maximum=maximum)
+                self.dials[name] = dial
             # add animations to dial
             for xmlanim in xmlelem:
                 animname = xmlanim.get("name", None)
