@@ -1,5 +1,8 @@
 *.pyd
+*.gpg
 svglib/*
 simplesignals/*
-/paperdoll/__pycache__
+__pycache__
+MD5SUMS
+SHA1SUMS
 /.spyproject
