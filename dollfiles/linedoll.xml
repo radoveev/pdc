@@ -35,6 +35,10 @@
         <import id="nose_r"/>
         <import id="nostril_r"/>
     </g>
+    <g id="teeth">
+        <import id="teeth_upper_l"/>
+        <mirror id="teeth_upper_r" axis="y" template="teeth_upper_l"/>
+    </g>
     <g id="lips">
         <import id="lower_lip_l" connectivity="lower_lip_l"/>
         <mirror id="lower_lip_r" axis="y" template="lower_lip_l"/>
@@ -506,6 +510,7 @@
             end="-1"/>
     </layer>
     <layer name="face_decorations">
+        <geometry id="teeth"/>
         <animation name="face_lips_open_mouth"/>
         <geometry id="face_decorations"/>
     </layer>

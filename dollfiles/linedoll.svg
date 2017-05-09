@@ -1348,7 +1348,7 @@
          style="fill:#faf7f0;fill-opacity:1;stroke:#000000;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          style="fill:#faf7f0;fill-opacity:1;stroke:#000000;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 3.6523694,104.47542 C 3.5785464,105.40583 3.6679196,107.62229 3.8634519,107.84842 4.2566102,107.90693 4.8776654,108.09297 5.1000537,108.09542 5.3506918,108.09818 5.8649103,108.02339 6.3436022,107.95042 6.5981729,107.56947 6.5764912,106.67328 6.3459307,105.17542 5.6516002,104.77172 4.8159045,104.285 3.6523694,104.47542 Z"
+         d="M 3.6523694,104.77557 C 3.5785464,105.70598 3.6679196,107.62229 3.8634519,107.84842 4.2566102,107.90693 4.8776654,108.09297 5.1000537,108.09542 5.3506918,108.09818 5.8649103,108.02339 6.3436022,107.95042 6.5981729,107.56947 6.5764912,106.77343 6.3459307,105.27557 5.6516002,104.87187 4.8159045,104.58515 3.6523694,104.77557 Z"
          id="path13415"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccsccc" />
@@ -1356,7 +1356,7 @@
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="path12870"
-         d="M 0.0773155,103.79999 C 0.00349252,104.7304 -0.16221193,107.73613 0.188,108.07275 0.5560423,108.1661 2.5360751,108.14593 3.4934588,107.99999 3.7480295,107.61904 3.5015605,105.49785 3.271,103.99999 1.9356957,103.67271 0.6669229,103.3419 0.0773155,103.79999 Z"
+         d="M 0.0773155,104.49957 C 0.00349252,105.42998 -0.16221193,107.73613 0.188,108.07275 0.5560423,108.1661 2.5360751,108.14593 3.4934588,107.99999 3.7480295,107.61904 3.5015605,106.19743 3.271,104.69957 1.9356957,104.37229 0.6669229,104.04148 0.0773155,104.49957 Z"
          style="fill:#faf7f0;fill-opacity:1;stroke:#000000;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
@@ -1379,7 +1379,7 @@
     </g>
     <g
        id="lips_l"
-       style="display:none">
+       style="display:inline">
       <path
          inkscape:label="#lower_lip_l"
          sodipodi:nodetypes="ccssc"
