@@ -159,9 +159,13 @@ class MPaperdollEditor(MBase):
         self.layers = []
         self.dollgeometry = {}  # the geometry that was drawn last
         self.modified_styles = {}
+        self.dollfiles = {}
+        self.connectivity = {}
+        self.geometry = {}
+        self.animations = {}
         self.dials = {}
         # parse paperdoll ressource files
-        self.descfile = self.load_doll_file("../paperdoll/linedoll.xml")
+        self.load_doll_file("../paperdoll/linedoll.xml")
         # initialize animation state
         for animname in self.animations:
             self.state[animname] = 40
@@ -170,10 +174,6 @@ class MPaperdollEditor(MBase):
         sisi.connect(self.on__draw_doll, signal="draw doll")
         sisi.connect(self.on__export_doll, signal="export doll")
         sisi.connect(self.on__set_style, signal="set style")
-
-    @property
-    def animations(self):
-        return self.descfile.animations
 
     @property
     def frames(self):
@@ -188,10 +188,6 @@ class MPaperdollEditor(MBase):
             frames.append(frame)
         return frames
 
-    @property
-    def connectivity(self):
-        return self.descfile.connectivity
-
 #    def animation_state(self, name):
 #        '''Returns the current state of the specified animation.'''
 #        return self.state[name]
@@ -203,6 +199,28 @@ class MPaperdollEditor(MBase):
         descfile.load_connectivity()
         descfile.load_geometry()
         descfile.load_animations()
+        # copy ressources to content library
+        descfilename = descfile.path.name
+        assert descfilename not in self.dollfiles, descfilename
+        self.dollfiles[descfilename] = descfile
+        for conn, nodeids in descfile.connectivity.items():
+            if conn in self.connectivity:
+                log.warning("Connectivity '%s' from %s was ignored because" +
+                            "it already exists.", conn, descfile.path.name)
+            else:
+                self.connectivity[conn] = nodeids
+        for elemid, elem in descfile.geometry.items():
+            if elemid in self.geometry:
+                log.warning("Geometry '%s' from %s was ignored because" +
+                            "it already exists.", elemid, descfile.path.name)
+            else:
+                self.geometry[elemid] = elem
+        for animname, anim in descfile.animations.items():
+            if animname in self.animations:
+                log.warning("Animation '%s' from %s was ignored because" +
+                            "it already exists.", animname, descfile.path.name)
+            else:
+                self.animations[animname] = anim
         # load layers
         log.info("Load layers")
         xmllayers = descfile.tree.find("layers")
@@ -246,7 +264,7 @@ class MPaperdollEditor(MBase):
         return descfile
 
     def load_geometry(self, geomid):
-        geomelem = self.descfile.geometry.get(geomid, None)
+        geomelem = self.geometry.get(geomid, None)
         if geomelem is None:
             geomelem = self.dollgeometry[geomid]
         delta = getattr(geomelem, "delta", None)
@@ -360,7 +378,8 @@ class MPaperdollEditor(MBase):
                             groupelem.append(elem)
         # add defs to svg document
         xmldefselem = ET.Element("defs", {"id": "defs_paperdoll1"})
-        datafile = self.descfile.svgfile
+        descfile = self.dollfiles["linedoll.xml"]
+        datafile = descfile.svgfile
         datasvgelem = datafile.tree.getroot()
         datadefselem = datasvgelem.find(datafile.svgns("defs"))
         for filterelem in datadefselem.findall(datafile.svgns("filter")):
