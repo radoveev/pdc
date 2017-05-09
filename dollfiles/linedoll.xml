@@ -9,12 +9,14 @@
         <import id="face_mouth_open_l" connectivity="face_l"/>
         <mirror id="face_mouth_open_r" axis="y" template="face_mouth_open_l"/>
     </g>
-    <g id="mouth_normal_shadow">
+    <g id="mouth_normal">
+        <import id="tongue_normal" connectivity="tongue"/>
         <import id="mouth_normal_shadow_l" connectivity="mouth_shadow_l"/>
         <mirror id="mouth_normal_shadow_r" axis="y"
              template="mouth_normal_shadow_l"/>
     </g>
-    <g id="mouth_open_shadow">
+    <g id="mouth_open">
+        <import id="tongue_mouth_open" connectivity="tongue"/>
         <import id="mouth_open_shadow_l" connectivity="mouth_shadow_l"/>
         <mirror id="mouth_open_shadow_r" axis="y"
              template="mouth_open_shadow_l"/>
@@ -520,7 +522,7 @@
             end="-1"/>
     </layer>
     <layer name="face_decorations">
-        <animation name="face_open_mouth_shadow"/>
+        <animation name="face_tongue"/>
         <geometry id="teeth"/>
         <animation name="face_lips_open_mouth"/>
         <geometry id="face_decorations"/>
@@ -545,9 +547,9 @@
         <keyframe number="0" geometry="face"/>
         <keyframe number="100" geometry="face_mouth_open"/>
     </animation>
-    <animation name="face_open_mouth_shadow" default="0">
-        <keyframe number="0" geometry="mouth_normal_shadow"/>
-        <keyframe number="100" geometry="mouth_open_shadow"/>
+    <animation name="face_tongue" default="0">
+        <keyframe number="0" geometry="mouth_normal"/>
+        <keyframe number="100" geometry="mouth_open"/>
     </animation>
     <animation name="face_lips_open_mouth" default="0">
         <keyframe number="0" geometry="lips"/>
@@ -625,7 +627,7 @@
     <dial name="open_mouth" min="1" max="100">
         <animation name="face_open_mouth"
              min="0" init="0" max="100"/>
-        <animation name="face_open_mouth_shadow"
+        <animation name="face_tongue"
              min="0" init="0" max="100"/>
         <animation name="face_lips_open_mouth"
              min="0" init="0" max="100"/>

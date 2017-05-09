@@ -506,20 +506,20 @@
        inkscape:collect="always"
        xlink:href="#linearGradient13438"
        id="linearGradient13440"
-       x1="2.0847087"
+       x1="0.051776588"
        y1="109.80894"
-       x2="2.3507931"
-       y2="113.53641"
+       x2="0.0085017551"
+       y2="112.51994"
        gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient13438"
        id="linearGradient13444"
        gradientUnits="userSpaceOnUse"
-       x1="2.0847087"
-       y1="108.65989"
-       x2="2.3065989"
-       y2="111.98961" />
+       x1="0.095970765"
+       y1="107.20148"
+       x2="0.052695919"
+       y2="109.86828" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -1320,12 +1320,19 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
     <path
-       style="fill:#bb6568;fill-opacity:1;stroke:#000000;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:label="#tongue_mouth_open"
+       sodipodi:nodetypes="cccsszsc"
+       inkscape:connector-curvature="0"
+       id="tongue_mouth_open"
        d="M 0.2,111.5 C -0.2088241,112.75767 -0.1916458,114.01534 -0.137,115.27301 -0.15916549,114.19467 -0.43508098,113.45467 0.2,111.5 2.1837408,108.77968 8.8776732,108.82369 9,112 9.1263405,115.28053 7.502053,118.45908 4.9497477,120.20518 2.81901,121.66288 -1.4691048,121.22196 -4.0658642,119.67485 -6.6626236,118.12775 -9.1114271,115.09287 -9,112 -8.8726334,108.4647 -1.8690075,108.91884 0.2,111.5 Z"
-       id="tongue"
+       style="display:inline;fill:#bb6568;fill-opacity:1;stroke:#000000;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:#bb6568;fill-opacity:1;stroke:#000000;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 0.2,107.89971 C -0.2088241,109.15738 -0.1916458,108.41505 -0.137,109.67272 -0.15916549,108.59438 -0.43508098,109.85438 0.2,107.89971 2.1837408,105.17939 8.8634529,105.22398 9,108.39971 9.0821463,110.31022 7.9114517,111.71526 4.9497477,112.60489 2.5980391,113.31129 -2.0436291,112.78198 -4.0658642,112.07456 -6.0880993,111.36714 -8.9788446,110.47611 -9,108.39971 -9.0360409,104.8623 -1.8690075,105.31855 0.2,107.89971 Z"
+       id="tongue_normal"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccsszsc"
-       inkscape:label="#tongue" />
+       inkscape:label="#tongue_normal" />
     <path
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
