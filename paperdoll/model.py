@@ -155,56 +155,13 @@ class MPaperdollEditor(MBase):
     '''
     def __init__(self):
         MBase.__init__(self)
-        self.descfile = svglib.DescriptionFile("../paperdoll/linedoll.xml")
         self.state = {}
         self.layers = []
         self.dollgeometry = {}  # the geometry that was drawn last
         self.modified_styles = {}
         self.dials = {}
-        # parse paperdoll description file
-        self.descfile.load_connectivity()
-        self.descfile.load_geometry()
-        self.descfile.load_animations()
-        # load layers
-        log.info("Load layers")
-        xmllayers = self.descfile.tree.find("layers")
-        for xmlelem in xmllayers:
-            name = xmlelem.get("name", None)
-            layercontent = []
-            for layerchild in xmlelem:
-                if layerchild.tag == "conform":
-                    geom = layerchild.get("geometry", None)
-                    basegeom = layerchild.get("base_geometry", None)
-                    layercontent.append({"geometry": geom,
-                                         "base_geometry": basegeom})
-#                elif layerchild.tag == "animation":
-#                    animname = layerchild.get("name", None)
-#                    layercontent.append({"animation": animname})
-                elif layerchild.tag == "geometry":
-                    geom = layerchild.get("id", None)
-                    layercontent.append({"geometry": geom})
-                else:
-                    data = layerchild.attrib.copy()
-                    data["tag"] = layerchild.tag
-                    layercontent.append(data)
-            self.layers.append({"name": name,
-                                "content": layercontent})
-        # load dials
-        log.info("Load dials")
-        xmllayers = self.descfile.tree.find("dials")
-        for xmlelem in xmllayers:
-            name = xmlelem.get("name", None)
-            minimum = int(xmlelem.get("min", None))
-            maximum = int(xmlelem.get("max", None))
-            dial = MDial(name, minimum=minimum, maximum=maximum)
-            self.dials[name] = dial
-            # add animations to dial
-            for xmlanim in xmlelem:
-                animname = xmlanim.get("name", None)
-                animmin = int(xmlanim.get("min", None))
-                animinit = int(xmlanim.get("init", None))
-                animmax = int(xmlanim.get("max", None))
-                dial.add_animation(animname, animmin, animinit, animmax)
+        # parse paperdoll ressource files
+        self.descfile = self.load_doll_file("../paperdoll/linedoll.xml")
         # initialize animation state
         for animname in self.animations:
             self.state[animname] = 40
@@ -238,6 +195,55 @@ class MPaperdollEditor(MBase):
 #    def animation_state(self, name):
 #        '''Returns the current state of the specified animation.'''
 #        return self.state[name]
+
+    def load_doll_file(self, path):
+        path = Path(path)
+        descfile = svglib.DescriptionFile(path)
+        # parse paperdoll description file
+        descfile.load_connectivity()
+        descfile.load_geometry()
+        descfile.load_animations()
+        # load layers
+        log.info("Load layers")
+        xmllayers = descfile.tree.find("layers")
+        for xmlelem in xmllayers:
+            name = xmlelem.get("name", None)
+            layercontent = []
+            for layerchild in xmlelem:
+                if layerchild.tag == "conform":
+                    geom = layerchild.get("geometry", None)
+                    basegeom = layerchild.get("base_geometry", None)
+                    layercontent.append({"geometry": geom,
+                                         "base_geometry": basegeom})
+#                elif layerchild.tag == "animation":
+#                    animname = layerchild.get("name", None)
+#                    layercontent.append({"animation": animname})
+                elif layerchild.tag == "geometry":
+                    geom = layerchild.get("id", None)
+                    layercontent.append({"geometry": geom})
+                else:
+                    data = layerchild.attrib.copy()
+                    data["tag"] = layerchild.tag
+                    layercontent.append(data)
+            self.layers.append({"name": name,
+                                "content": layercontent})
+        # load dials
+        log.info("Load dials")
+        xmllayers = descfile.tree.find("dials")
+        for xmlelem in xmllayers:
+            name = xmlelem.get("name", None)
+            minimum = int(xmlelem.get("min", None))
+            maximum = int(xmlelem.get("max", None))
+            dial = MDial(name, minimum=minimum, maximum=maximum)
+            self.dials[name] = dial
+            # add animations to dial
+            for xmlanim in xmlelem:
+                animname = xmlanim.get("name", None)
+                animmin = int(xmlanim.get("min", None))
+                animinit = int(xmlanim.get("init", None))
+                animmax = int(xmlanim.get("max", None))
+                dial.add_animation(animname, animmin, animinit, animmax)
+        return descfile
 
     def load_geometry(self, geomid):
         geomelem = self.descfile.geometry.get(geomid, None)
@@ -377,7 +383,7 @@ class MPaperdollEditor(MBase):
                 elif elem.elemid.startswith("outline_"):
                     elem.style = outlinestyle.copy()
                 elif elem.elemid in {"eye_lower_l", "eye_upper_l", "eye_lid_l",
-                                        "eye_lower_r", "eye_upper_r", "eye_lid_r"}:
+                                     "eye_lower_r", "eye_upper_r", "eye_lid_r"}:
                     elem.style = bodystyle.copy()
                 elif layername in {"face", "arms", "legs", "boobs", "torso"}:
                     elem.style = bodystyle.copy()
