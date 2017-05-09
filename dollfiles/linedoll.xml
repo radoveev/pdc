@@ -113,8 +113,10 @@
         <import id="knee_cap_l"/>
         <mirror id="knee_cap_r" axis="y" template="knee_cap_l"/>
     </g>
-    <g id="pussy">
+    <g id="crotch_shadow">
         <import id="pussy_shadow"/>
+    </g>
+    <g id="pussy">
         <import id="pussy_shadow_red"/>
         <import id="labia_inner_l"/>
         <mirror id="labia_inner_r" axis="y" template="labia_inner_l"/>
@@ -338,6 +340,32 @@
     <layer name="torso">
         <animation name="torso"/>
     </layer>
+    <layer name="legs_shadow">
+        <geometry id="crotch_shadow"/>
+    </layer>
+    <layer name="legs">
+        <geometry id="legs"/>
+        <trace_outline
+            id="line_leg_outer_l"
+            base_geometry="leg_l"
+            start="0"
+            end="4"/>
+        <trace_outline
+            id="line_leg_outer_r"
+            base_geometry="leg_r"
+            start="0"
+            end="4"/>
+        <trace_outline
+            id="line_leg_inner_l"
+            base_geometry="leg_l"
+            start="5"
+            end="9"/>
+        <trace_outline
+            id="line_leg_inner_r"
+            base_geometry="leg_r"
+            start="5"
+            end="9"/>
+    </layer>
     <layer name="torso_decorations">
         <geometry id="pussy"/>
         <geometry id="torso_decorations"/>
@@ -361,31 +389,17 @@
             base_geometry="torso_r"
             start="6"
             end="10"/>
-
+        <trace_outline
+            id="line_labia_outer_l"
+            base_geometry="labia_outer_l"
+            start="2"
+            end="4"/>
+        <trace_outline
+            id="line_labia_outer_r"
+            base_geometry="labia_outer_r"
+            start="2"
+            end="4"/>
         <animation name="bra_back"/>
-    </layer>
-    <layer name="legs">
-        <geometry id="legs"/>
-        <trace_outline
-            id="line_leg_outer_l"
-            base_geometry="leg_l"
-            start="0"
-            end="4"/>
-        <trace_outline
-            id="line_leg_outer_r"
-            base_geometry="leg_r"
-            start="0"
-            end="4"/>
-        <trace_outline
-            id="line_leg_inner_l"
-            base_geometry="leg_l"
-            start="5"
-            end="10"/>
-        <trace_outline
-            id="line_leg_inner_r"
-            base_geometry="leg_r"
-            start="5"
-            end="10"/>
     </layer>
     <layer name="legs_decoration">
         <geometry id="legs_decoration"/>
