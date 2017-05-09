@@ -167,8 +167,21 @@ class MPaperdollEditor(MBase):
         # parse paperdoll ressource files
         dolldir = Path("../dollfiles").resolve()
         for descfilepath in dolldir.glob("*.xml"):
-            self.load_doll_file(descfilepath)
-#            self.load_doll_file("../paperdoll/linedoll.xml")
+            descfile = svglib.DescriptionFile(descfilepath)
+            # parse paperdoll description file
+            descfile.load_connectivity()
+            descfile.load_geometry()
+            descfile.load_animations()
+            # store paperdoll description file
+            descfilename = descfile.path.name
+            assert descfilename not in self.dollfiles, descfilename
+            self.dollfiles[descfilename] = descfile
+        for content in ("connectivity", "geometry", "animations"):
+            for filename in sorted(self.dollfiles):
+                descfile = self.dollfiles[filename]
+                self.load_content(descfile, content)
+        for filename in sorted(self.dollfiles):
+            self.load_doll_file(self.dollfiles[filename])
         # initialize animation state
         for animname in self.animations:
             self.state[animname] = 40
@@ -195,35 +208,18 @@ class MPaperdollEditor(MBase):
 #        '''Returns the current state of the specified animation.'''
 #        return self.state[name]
 
-    def load_doll_file(self, path):
-        path = Path(path)
-        descfile = svglib.DescriptionFile(path)
-        # parse paperdoll description file
-        descfile.load_connectivity()
-        descfile.load_geometry()
-        descfile.load_animations()
-        # copy ressources to content library
-        descfilename = descfile.path.name
-        assert descfilename not in self.dollfiles, descfilename
-        self.dollfiles[descfilename] = descfile
-        for conn, nodeids in descfile.connectivity.items():
-            if conn in self.connectivity:
-                log.warning("Connectivity '%s' from %s was ignored because" +
-                            "it already exists.", conn, descfile.path.name)
+    def load_content(self, file, attribute):
+        source = getattr(file, attribute)
+        target = getattr(self, attribute)
+        for name, data in source.items():
+            if name in target:
+                log.warning("%s '%s' from %s was ignored because" +
+                            "it already exists.", attribute.capitalize(),
+                            name, file.path.name)
             else:
-                self.connectivity[conn] = nodeids
-        for elemid, elem in descfile.geometry.items():
-            if elemid in self.geometry:
-                log.warning("Geometry '%s' from %s was ignored because" +
-                            "it already exists.", elemid, descfile.path.name)
-            else:
-                self.geometry[elemid] = elem
-        for animname, anim in descfile.animations.items():
-            if animname in self.animations:
-                log.warning("Animation '%s' from %s was ignored because" +
-                            "it already exists.", animname, descfile.path.name)
-            else:
-                self.animations[animname] = anim
+                target[name] = data
+
+    def load_doll_file(self, descfile):
         # load layers
         log.info("Load layers")
         xmllayers = descfile.tree.find("layers")
