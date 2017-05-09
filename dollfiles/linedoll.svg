@@ -594,7 +594,7 @@
      inkscape:groupmode="layer"
      id="layer30"
      inkscape:label="TorsoBase"
-     style="display:none">
+     style="display:inline">
     <path
        style="display:inline;opacity:0.44600004;fill:#eac6b6;fill-opacity:1;stroke:none;stroke-width:0.99999982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="M 0,113.00031 H 20.25 V 138.00031 C 20.849128,150.54 35.992032,153.24718 41.43,155.50257 46.86797,157.75796 52.909949,163.30889 63,168.00031 L 59.000001,199.00031 C 59.980757,206.37776 58.191518,214.27356 57.527938,218.11763 56.864358,221.9617 55.233125,273.94314 54.156,280.72159 53.773247,283.13029 52.041391,295.65172 52.000001,303.00031 51.958611,310.3489 64.220181,324.16893 66.000001,338.00031 66.356791,340.77303 70.159031,355.00635 70.000001,380.00031 L 29,412.00031 C 28.827353,415.52971 10.105978,425.75293 9,427 6.014256,430.36666 1.449074,421.97031 0.5,420.00031 V 412.00031 H 0 Z"
@@ -607,7 +607,8 @@
      inkscape:groupmode="layer"
      id="layer31"
      inkscape:label="TorsoHips100"
-     style="display:none">
+     style="display:none"
+     sodipodi:insensitive="true">
     <path
        style="display:inline;opacity:0.7258065;fill:#eac6b6;fill-opacity:1;stroke:none;stroke-width:0.99999982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="M 0,113.00031 H 20.250003 V 138.00031 C 20.849123,150.54 35.99203,153.24718 41.43,155.50257 46.86797,157.75796 52.90995,163.30889 63,168.00031 L 59,199.00031 C 59.98075,206.37776 58.19158,214.27356 57.528,218.11763 56.86442,221.9617 55.23313,273.94314 54.156,280.72159 53.77325,283.13029 52.04139,295.65172 52,303.00031 51.95861,310.3489 76.554726,326.9258 84,338.00031 91.487779,349.13805 90.924391,372.81969 91,381.38895 L 29.000003,412.00031 C 28.827353,415.52971 10.10597,425.75293 9,427 6.01425,430.36666 1.449074,421.97031 0.5,420.00031 V 412.00031 H 0 Z"
@@ -620,7 +621,8 @@
      style="display:none"
      inkscape:label="TorsoHips0"
      id="g4431"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
     <path
        inkscape:label="#torso_hips0_l"
        sodipodi:nodetypes="ccczcczszsccscccc"
@@ -633,7 +635,8 @@
      style="display:none"
      inkscape:label="TorsoWaist100"
      id="g4474"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
     <path
        inkscape:label="torso"
        sodipodi:nodetypes="ccczcczszsccscccc"
@@ -646,7 +649,8 @@
      style="display:none"
      inkscape:label="TorsoWaist0"
      id="g4435"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
     <path
        inkscape:label="torso"
        sodipodi:nodetypes="ccczcczszsccscccc"
@@ -656,10 +660,11 @@
        style="display:inline;opacity:0.58499995;fill:#eac6b6;fill-opacity:1;stroke:none;stroke-width:0.99999982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="TorsoShoulders0"
      id="g4427"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
     <path
        inkscape:label="torso"
        sodipodi:nodetypes="ccczcczszsccscccc"
