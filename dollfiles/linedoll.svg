@@ -1311,14 +1311,20 @@
        inkscape:connector-curvature="0"
        id="nose_r"
        d="M -2.9646281,96.557989 C -2.9646281,96.557989 -3.4746169,96.479581 -3.6660009,96.028393 -4.4892527,95.858547 -6.0298446,93.582734 -3.1212728,91.082955"
-       style="fill:none;stroke:#000000;stroke-width:0.18897638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.18897638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:label="#path8810" />
     <path
-       style="fill:#893d3f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 0,123.91749 C 5.0086148,124.78625 8.1976911,120.24501 9.9155802,112.43681 9.5262417,105.02533 3.7243312,103.54379 0,103.76495 Z"
-       id="throat_l"
+       style="display:inline;fill:#893d3f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 0,111.91749 C 4.9644206,112.30011 5.8112056,112.04656 9.9155802,108.43681 5.3719891,104.91442 3.2381952,104.79249 0,105.76495 Z"
+       id="throat_normal_l"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="throat_mouth_open_l"
+       d="M 0,123.91749 C 5.0086148,124.78625 8.1976911,120.24501 9.9155802,112.43681 9.5262417,105.02533 3.7243312,103.54379 0,103.76495 Z"
+       style="display:inline;fill:#893d3f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
        inkscape:label="#tongue_mouth_open"
        sodipodi:nodetypes="cccsszsc"

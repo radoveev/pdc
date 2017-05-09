@@ -10,12 +10,18 @@
         <mirror id="face_mouth_open_r" axis="y" template="face_mouth_open_l"/>
     </g>
     <g id="mouth_normal">
+        <import id="throat_normal_l" connectivity="throat_l"/>
+        <mirror id="throat_normal_r" axis="y"
+             template="throat_normal_l"/>
         <import id="tongue_normal" connectivity="tongue"/>
         <import id="mouth_normal_shadow_l" connectivity="mouth_shadow_l"/>
         <mirror id="mouth_normal_shadow_r" axis="y"
              template="mouth_normal_shadow_l"/>
     </g>
     <g id="mouth_open">
+        <import id="throat_mouth_open_l" connectivity="throat_l"/>
+        <mirror id="throat_mouth_open_r" axis="y"
+             template="throat_mouth_open_l"/>
         <import id="tongue_mouth_open" connectivity="tongue"/>
         <import id="mouth_open_shadow_l" connectivity="mouth_shadow_l"/>
         <mirror id="mouth_open_shadow_r" axis="y"
