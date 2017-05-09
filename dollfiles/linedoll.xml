@@ -289,6 +289,7 @@
         <node id="inner_knee_l"/>
         <node id="inner_thigh_l"/>
         <node id="crotch_l"/>
+        <node id="top_thigh_l"/>
         <node id="hip_joint_l"/>
     </circular>
     <circular id="boob_l">
@@ -379,12 +380,12 @@
             id="line_leg_inner_l"
             base_geometry="leg_l"
             start="5"
-            end="9"/>
+            end="10"/>
         <trace_outline
             id="line_leg_inner_r"
             base_geometry="leg_r"
             start="5"
-            end="9"/>
+            end="10"/>
     </layer>
     <layer name="legs_decoration">
         <geometry id="legs_decoration"/>
