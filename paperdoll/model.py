@@ -266,14 +266,14 @@ class MPaperdollEditor(MBase):
                 dial.add_animation(animname, animmin, animinit, animmax)
         return descfile
 
-    def load_geometry(self, geomid):
+    def get_geometry(self, geomid):
         geomelem = self.geometry.get(geomid, None)
         if geomelem is None:
             geomelem = self.dollgeometry[geomid]
         delta = getattr(geomelem, "delta", None)
         if delta is not None:
             targetid = delta.trgtelem.connectivity
-            targetelem = self.load_geometry(targetid)
+            targetelem = self.get_geometry(targetid)
             geomelem = delta.conform(geomid, targetelem)
         return geomelem
 
@@ -332,7 +332,7 @@ class MPaperdollEditor(MBase):
                 contenttag = content.get("tag", None)
                 if contenttag == "trace_outline":
                     base_geometry_id = content["base_geometry"]
-                    base_geometry = self.load_geometry(base_geometry_id)
+                    base_geometry = self.get_geometry(base_geometry_id)
                     elemid = content["id"]
                     start = int(content["start"])
                     end = int(content["end"])
@@ -365,7 +365,7 @@ class MPaperdollEditor(MBase):
                     unified_elem = self.dollgeometry[content["id"]]
                     layerelem.append(unified_elem)
                 else:
-                    group = self.load_geometry(content["geometry"])
+                    group = self.get_geometry(content["geometry"])
                     # create a copy of the group and remove all children
                     groupelem = group.copy()
                     groupelem.children = []
@@ -376,7 +376,7 @@ class MPaperdollEditor(MBase):
                             # reload elements so conforming paths can adjust
                             delta = getattr(elem, "delta", None)
                             if delta is not None:
-                                elem = self.load_geometry(elem.elemid)
+                                elem = self.get_geometry(elem.elemid)
                             # add element to new group
                             groupelem.append(elem)
         # add defs to svg document
@@ -476,12 +476,12 @@ class MPaperdollEditor(MBase):
 #                                 "geometry": unified_elem}
 #                    completelayers.append(layerdata)
 #                else:
-#                    group = self.load_geometry(content["geometry"])
+#                    group = self.get_geometry(content["geometry"])
 #                    for elem in group.iterate():
 #                        # reload elem so conforming paths can adjust
 #                        delta = getattr(elem, "delta", None)
 #                        if delta is not None:
-#                            elem = self.load_geometry(elem.elemid)
+#                            elem = self.get_geometry(elem.elemid)
 #                        layerdata = {"name": layer["name"],
 #                                     "geometry": elem}
 #                        completelayers.append(layerdata)
