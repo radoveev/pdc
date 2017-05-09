@@ -539,7 +539,13 @@ class MPaperdollEditor(MBase):
         '''Write the current state of the paperdoll to a SVG file.'''
         log.info("Write paperdoll to: %s", filepath)
         # draw the paperdoll
-        svgdoc = self.draw()
+        svgdoc = self.draw(width=200, height=800, viewbox="0 0 200 800")
+        # rename all elements so we can filter them out if the exported
+        # file was used as template for new art
+        prefix = "pdcexp_"
+        svgdoc.elemid = prefix + svgdoc.elemid
+        for elem in svgdoc.iterate():
+            elem.elemid = prefix + elem.elemid
         # create an element tree from the svg document
         xmlsvgelem = svgdoc.to_xml()
         # create bytes from xml object
