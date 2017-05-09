@@ -501,7 +501,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -724,15 +724,8 @@
        sodipodi:nodetypes="czssccszssc"
        inkscape:label="leg" />
     <g
-       id="g_knee_cap_l"
-       inkscape:label="#g_knee_cap_l">
-      <path
-         style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:#000000;stroke-width:0.58582675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-         d="M 24.432715,546.38553 C 29.155839,551.44604 37.054684,557.72778 45.204667,549.75103"
-         id="knee_cap_l"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cc"
-         inkscape:label="#knee_cap_l" />
+       id="knee_cap_l"
+       inkscape:label="#knee_cap_l">
       <path
          transform="matrix(1.000254,0,0,1.0003281,-0.00884593,-0.98104506)"
          inkscape:label="#shade_knee_cap_l"
@@ -741,26 +734,20 @@
          id="shade_knee_cap_l"
          d="M 24.432715,548.38553 C 29.155839,553.44604 37.054684,559.72778 45.204667,551.75103"
          style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.96377951;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter7779)" />
-    </g>
-    <g
-       inkscape:label="#g_knee_cap_l"
-       id="g7791"
-       transform="matrix(-1,0,0,1,7.637378,0)">
       <path
-         inkscape:label="#knee_cap_l"
-         sodipodi:nodetypes="cc"
+         inkscape:label="#area_knee_cap_l"
+         sodipodi:nodetypes="ccsc"
          inkscape:connector-curvature="0"
-         id="path7787"
+         id="area_knee_cap_l"
+         d="M 24.432715,546.38553 C 31.02361,553.30943 38.192485,556.7973 45.204667,549.75103 48.090205,546.87408 46.454494,533.40062 36.138993,532.83426 25.819211,532.26766 20.515912,542.32546 24.432715,546.38553 Z"
+         style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:none;stroke-width:0.58582675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:#000000;stroke-width:0.58582675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="M 24.432715,546.38553 C 29.155839,551.44604 37.054684,557.72778 45.204667,549.75103"
-         style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:#000000;stroke-width:0.58582675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <path
-         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.96377951;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter7779)"
-         d="M 24.432715,548.38553 C 29.155839,553.44604 37.054684,559.72778 45.204667,551.75103"
-         id="path7789"
+         id="line_knee_cap_l"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc"
-         inkscape:label="#shade_knee_cap_l"
-         transform="matrix(1.000254,0,0,1.0003281,-0.00884593,-0.98104506)" />
+         inkscape:label="#line_knee_cap_l" />
     </g>
   </g>
   <g
@@ -1062,7 +1049,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Underwear"
-     style="display:inline;opacity:1"
+     style="display:none;opacity:1"
      sodipodi:insensitive="true">
     <path
        sodipodi:nodetypes="cccsccc"

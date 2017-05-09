@@ -102,6 +102,17 @@
             <node idx="1" offset="dynamic" anchor="hip_joint_r"/>
         </conform>
     </g>
+    <g id="legs_decoration">
+        <!--
+        <import id="outline_knee_cap_l"/>
+        <mirror id="outline_knee_cap_r" axis="y"
+             template="outline_knee_cap_l"/>
+        <import id="shade_knee_cap_l"/>
+        <mirror id="shade_knee_cap_r" axis="y" template="shade_knee_cap_l"/>
+        -->
+        <import id="knee_cap_l"/>
+        <mirror id="knee_cap_r" axis="y" template="knee_cap_l"/>
+    </g>
     <g id="pussy">
         <import id="pussy_shadow"/>
         <import id="pussy_shadow_red"/>
@@ -373,6 +384,9 @@
             base_geometry="leg_r"
             start="5"
             end="9"/>
+    </layer>
+    <layer name="legs_decoration">
+        <geometry id="legs_decoration"/>
     </layer>
     <layer name="boobs">
         <!-- all elements here have their style changed -->
