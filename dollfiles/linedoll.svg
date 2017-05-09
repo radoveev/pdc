@@ -341,19 +341,6 @@
     <filter
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
-       id="filter9512"
-       x="-0.0396924"
-       width="1.0793848"
-       y="-2.2085973"
-       height="5.4171945">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="0.3506162"
-         id="feGaussianBlur9514" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       style="color-interpolation-filters:sRGB"
        id="filter9564"
        x="-0.094321927"
        width="1.1886439"
@@ -524,6 +511,15 @@
        x2="2.3507931"
        y2="113.53641"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient13438"
+       id="linearGradient13444"
+       gradientUnits="userSpaceOnUse"
+       x1="2.0847087"
+       y1="108.65989"
+       x2="2.3065989"
+       y2="111.98961" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -1333,9 +1329,15 @@
     <path
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
-       id="mouth_shadow_l"
-       d="M -0.26516506,113.75283 C 3.3574119,114.45913 6.76433,114.08714 9.9155802,112.43681 9.5262417,105.02533 3.7243312,103.54379 0,103.76495 Z"
-       style="display:inline;fill:url(#linearGradient13440);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       id="mouth_normal_shadow_l"
+       d="M 0,111.75283 C 3.622577,112.45913 6.56475,110.08714 9.716,108.43681 5.9679043,105.70991 3.7243312,105.54379 0,105.76495 Z"
+       style="display:inline;fill:url(#linearGradient13444);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="display:inline;fill:url(#linearGradient13440);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 0,113.75283 C 3.622577,114.45913 6.76433,114.08714 9.9155802,112.43681 9.5262417,105.02533 3.7243312,103.54379 0,103.76495 Z"
+       id="mouth_open_shadow_l"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
     <g
        id="teeth_upper_l"
        style="display:inline"
@@ -1387,14 +1389,6 @@
          id="lower_lip_l"
          d="M 0,113.8 V 107.8 C 6.4653095,107.5384 9.980114,107.77592 10,108.4 10.03074,109.36466 8.8329941,111.27019 8,112.1 6.4742175,113.61996 0,113.8 0,113.8 Z"
          style="display:inline;fill:#c26b6d;fill-opacity:1;stroke:none;stroke-width:0.03779528;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         inkscape:label="#mouthline"
-         transform="matrix(1,0,0,1.9852867,0,-106.73669)"
-         sodipodi:nodetypes="csssc"
-         inkscape:connector-curvature="0"
-         id="mouthline"
-         d="M -10.6,108.1137 C -6.8707267,108.38707 -5.0689649,107.78699 -3.14,108.01296 -1.461566,108.20958 -0.55018025,108.30587 0,108.3 0.55018025,108.29413 1.2289335,108.12243 3.1399473,108.00342 5.1707528,107.87694 6.9403007,108.73505 10.6,108.1137"
-         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#50031c;stroke-width:0.53648293;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter9512)" />
       <path
          inkscape:label="#upper_lip_l"
          sodipodi:nodetypes="csszcc"
