@@ -39,6 +39,16 @@
          template="uniform_jacket_loose_l"/>
         <import id="uni_jacket_loose_decoration"/>
     </g>
+    <g id="uniform_jacket_open_l">
+        <use id="uni_jacket_arm_l"/>
+        <import id="uni_jacket_open_body_l"/>
+    </g>
+    <g id="uniform_jacket_open">
+        <use id="uniform_jacket_open_l"/>
+        <mirror id="uniform_jacket_open_r" axis="y"
+         template="uniform_jacket_open_l"/>
+        <import id="uni_jacket_open_decoration"/>
+    </g>
     <g id="uniform_boobs_0">
         <import id="uni_jacket_boob0_l" connectivity="uni_boob_l"/>
         <mirror id="uni_jacket_boob0_r" axis="y"
@@ -96,7 +106,8 @@
         <geometry id="uniform_shirt"/>
         <animation name="uniform_skirt_hips"/>
         <animation name="shirt_boobs"/>
-        <geometry id="uniform_jacket_loose"/>
+        <geometry id="uniform_jacket_open"/>
+        <!--<animation name="uniform_jacket_open"/>-->
         <geometry id="uniform_shirt_collar"/>
         <geometry id="uniform_bowtie"/>
         <geometry id="uniform_shirt_collar_flaps_small"/>
@@ -111,6 +122,12 @@
 		<keyframe number="50" geometry="uniform_boobs_20"/>
 		<keyframe number="100" geometry="uniform_boobs_100"/>
 	</animation>
+    <!--
+   <animation name="uniform_jacket_open" default="0">
+		<keyframe number="0" geometry="uniform_jacket"/>
+		<keyframe number="100" geometry="uniform_jacket_loose"/>
+	</animation>
+    -->
    <animation name="shirt_boobs" default="30">
 		<keyframe number="0" geometry="shirt_boobs_0"/>
 		<keyframe number="50" geometry="shirt_boobs_20"/>
@@ -151,6 +168,11 @@
         <animation name="uniform_boobs" min="0" init="30" max="100"/>
         <animation name="shirt_boobs" min="0" init="30" max="100"/>
     </dial>
+    <!--
+    <dial name="uniform_jacket_open" min="1" max="100">
+        <animation name="uniform_jacket_open" min="0" init="0" max="100"/>
+    </dial>
+    -->
     <dial name="skirt_length" min="1" max="100">
         <animation name="uniform_skirt_XS_length"
              min="0" init="70" max="100"/>
