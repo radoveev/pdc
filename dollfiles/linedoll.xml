@@ -571,7 +571,7 @@
         <keyframe number="40" geometry="boobs_clothed_20"/>
         <keyframe number="100" geometry="boobs_clothed_100"/>
     </animation>
-    <combined name="boobs_clothing_elasticity" default="100">
+    <combined name="boobs_clothing_elasticity" default="100"
          geoid="('boob_l', 'boob_r')">
          <animation name="body_boobs">
     	       <keyframe number="0" weight="100"/>
