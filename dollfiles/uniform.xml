@@ -145,7 +145,8 @@
 		<keyframe number="0" geometry="uniform_skirt_XL_0"/>
 		<keyframe number="101" geometry="uniform_skirt_XL_100"/>
 	</animation>
-    <combined name="uniform_skirt_hips" default="70">
+    <combined name="uniform_skirt_hips" default="70"
+         geoid="('uni_skirt',)">>
          <animation name="uniform_skirt_XS_length">
     	       <keyframe number="0" weight="100"/>
     	       <keyframe number="50" weight="0"/>

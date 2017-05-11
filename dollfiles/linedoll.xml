@@ -481,7 +481,6 @@
 
     <layer name="face">
         <animation name="face_open_mouth"/>
-        <!--
         <trace_outline
             id="line_face_l"
             base_geometry="face_l"
@@ -492,7 +491,6 @@
             base_geometry="face_r"
             start="0"
             end="4"/>
-        -->
     </layer>
     <layer name="eyes">
         <geometry id="eye_l"/>
@@ -549,7 +547,8 @@
 </layers>
 
 <animations>
-    <animation name="face_open_mouth" default="0">
+    <animation name="face_open_mouth" default="0"
+         geoid="('face_l', 'face_r')">
         <keyframe number="0" geometry="face"/>
         <keyframe number="100" geometry="face_mouth_open"/>
     </animation>
