@@ -543,7 +543,8 @@
         <keyframe number="40" geometry="boobs_clothed_20"/>
         <keyframe number="100" geometry="boobs_clothed_100"/>
     </animation>
-    <combined name="boobs_clothing_elasticity" default="0">
+    <combined name="boobs_clothing_elasticity" default="0"
+         geoid="('boob_l', 'boob_r')">
          <animation name="body_boobs">
     	       <keyframe number="0" weight="100"/>
     	       <keyframe number="100" weight="0"/>
@@ -591,8 +592,9 @@
 		<keyframe number="50" geometry="torso_base"/>
 		<keyframe number="100" geometry="torso_hips100"/>
 	</animation>
-    <combined name="torso" default="50">
-         <animation name="shoulders">
+    <combined name="torso" default="50"
+         geoid="('torso_l', 'torso_r')">
+        <animation name="shoulders">
     	       <keyframe number="0" weight="1"/>
     	       <keyframe number="100" weight="1"/>
         </animation>
