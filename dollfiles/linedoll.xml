@@ -44,14 +44,13 @@
         <mirror id="eye_upper_r" axis="y" template="eye_upper_l"/>
         <mirror id="eye_lid_r" axis="y" template="eye_lid_l"/>
         <mirror id="eye_shadow_lid_r" axis="y" template="eye_shadow_lid_l"/>
+        <import id="eye_lashes_l"/>
+        <mirror id="eye_lashes_r" axis="y" template="eye_lashes_l"/>
     </g>
     <g id="face_decorations">
         <import id="eyebrow_l"/>
         <mirror id="eyebrow_r" axis="y" template="eyebrow_l"/>
-        <import id="nose_l"/>
-        <import id="nostril_l"/>
-        <import id="nose_r"/>
-        <import id="nostril_r"/>
+        <import id="nose"/>
     </g>
     <g id="teeth">
         <import id="teeth_upper_l"/>
