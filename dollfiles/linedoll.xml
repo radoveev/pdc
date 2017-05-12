@@ -44,6 +44,10 @@
         <mirror id="eye_upper_r" axis="y" template="eye_upper_l"/>
         <mirror id="eye_lid_r" axis="y" template="eye_lid_l"/>
         <mirror id="eye_shadow_lid_r" axis="y" template="eye_shadow_lid_l"/>
+        <!--
+        <import id="eye_lid_crease_l"/>
+        <mirror id="eye_lid_crease_r" axis="y" template="eye_lid_crease_l"/>
+        -->
         <import id="eye_lashes_l"/>
         <mirror id="eye_lashes_r" axis="y" template="eye_lashes_l"/>
     </g>
@@ -540,6 +544,7 @@
     </layer>
     <layer name="eyes">
         <geometry id="eye_l"/>
+        <!--
         <trace_outline
             id="outline_eye_outline_l"
             base_geometry="eye_outline_l"
@@ -570,6 +575,7 @@
             base_geometry="eye_lid_r"
             start="-3"
             end="-1"/>
+        -->
     </layer>
     <layer name="face_decorations">
         <animation name="face_tongue"/>
