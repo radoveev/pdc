@@ -22,7 +22,7 @@
      id="defs4151">
     <linearGradient
        inkscape:collect="always"
-       id="linearGradient13438">
+       id="toe_shadow-1">
       <stop
          style="stop-color:#000000;stop-opacity:1;"
          offset="0"
@@ -504,7 +504,7 @@
     </filter>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient13438"
+       xlink:href="#toe_shadow-1"
        id="linearGradient13440"
        x1="0.051776588"
        y1="109.80894"
@@ -513,7 +513,7 @@
        gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient13438"
+       xlink:href="#toe_shadow-1"
        id="linearGradient13444"
        gradientUnits="userSpaceOnUse"
        x1="0.095970765"
@@ -712,12 +712,61 @@
          d="M 24.432715,546.38553 C 31.02361,553.30943 38.192485,556.7973 45.204667,549.75103 48.090205,546.87408 46.454494,533.40062 36.138993,532.83426 25.819211,532.26766 20.515912,542.32546 24.432715,546.38553 Z"
          style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:none;stroke-width:0.58582675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <path
-         style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:#000000;stroke-width:0.58582675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:#000000;stroke-width:0.58600003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="M 24.432715,546.38553 C 29.155839,551.44604 37.054684,557.72778 45.204667,549.75103"
          id="line_knee_cap_l"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc"
          inkscape:label="#line_knee_cap_l" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Feet"
+     style="display:inline">
+    <g
+       id="foot_l"
+       style="display:inline">
+      <path
+         sodipodi:nodetypes="csccssccssccsscssccsccccc"
+         inkscape:connector-curvature="0"
+         id="path_foot_l"
+         d="M 22.293472,662.88378 C 20.432871,663.60171 20.771943,670.6791 20.795749,674.90372 20.811453,677.69057 21.949389,680.18671 21.920311,684.74159 20.643055,691.45369 19.17597,706.34576 20.9686,716.48521 21.126046,720.1281 20.174283,723.11442 21.213204,725.76419 22.274383,728.47073 29.276849,728.84225 31.1127,726.11775 34.032471,721.78466 31.201116,720.21371 31.819807,716.77111 32.269988,716.43429 32.647051,716.6523 33.141602,717.02111 33.28257,720.12005 32.765166,721.41558 33.901523,724.218 34.942416,726.78499 39.383225,727.03841 40.356476,724.218 41.149945,721.91858 40.801903,720.59602 39.481923,718.92908 38.957438,718.43264 38.560055,717.77172 38.240398,716.26223 37.83788,719.35495 39.394729,718.58771 40.998466,723.62611 41.669631,725.73468 47.147833,724.3747 47.334019,722.5244 47.799864,717.89487 45.231581,718.96248 44.079981,715.08729 44.173888,718.08805 46.333048,721.90314 47.607985,722.33037 49.568067,722.98719 52.959926,722.17013 52.659447,720.1251 52.238984,717.26347 51.341848,716.50113 49.474191,714.21597 48.641217,716.01136 51.583689,717.41572 52.555893,719.44312 53.654327,719.41127 55.562116,719.0936 55.429816,717.16464 55.255903,714.62896 54.391473,714.952 53.634725,711.61533 51.912832,704.66851 48.177411,700.68123 43.376157,686.86291 44.105976,681.6351 44.351392,682.21394 42.461943,677.40091 43.593057,668.86816 42.246331,668.64178 42.408642,662.88378 36.516085,661.87248 28.186029,660.27962 22.293472,662.88378 Z"
+         style="display:inline;opacity:1;fill:#eac6b6;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <g
+         id="toenails_l">
+        <path
+           style="display:inline;fill:#f9e6db;fill-opacity:1;stroke:#3a3a3a;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 21.855,723.08606 C 25.041321,722.73805 27.138412,722.72701 30.713,723.08606 30.803711,721.62765 29.630307,719.26662 25.941982,719.32956 22.859541,719.38216 21.779559,721.19077 21.855,723.08606 Z"
+           id="toenail_1_l"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccsc" />
+        <path
+           sodipodi:nodetypes="ccsc"
+           inkscape:connector-curvature="0"
+           id="toenail_2_l"
+           d="M 34.792078,722.47847 C 36.485835,722.31318 38.378726,722.14392 40.005738,722.12492 39.831284,720.35715 39.130852,719.62518 37.299885,719.69424 35.587873,719.75882 34.495666,720.49479 34.792078,722.47847 Z"
+           style="display:inline;fill:#f9e6db;fill-opacity:1;stroke:#3a3a3a;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           style="display:inline;fill:#f9e6db;fill-opacity:1;stroke:#3a3a3a;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 41.854578,721.66597 C 43.267501,721.44452 45.074567,721.07079 46.318238,720.74992 45.706284,719.23215 44.533443,718.82817 43.268635,719.10049 42.067122,719.35919 41.464416,720.24479 41.854578,721.66597 Z"
+           id="toenail_3_l"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccsc" />
+        <path
+           sodipodi:nodetypes="ccsc"
+           inkscape:connector-curvature="0"
+           id="toenail_4_l"
+           d="M 47.913937,720.20258 C 49.224608,719.98428 50.669887,719.50319 51.243714,719.20128 50.896925,718.08126 49.911584,717.71075 48.937829,717.99066 47.756615,718.33021 47.391193,719.13496 47.913937,720.20258 Z"
+           style="display:inline;fill:#f9e6db;fill-opacity:1;stroke:#3a3a3a;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           style="display:inline;fill:#f9e6db;fill-opacity:1;stroke:#3a3a3a;stroke-width:0.189;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 52.573394,717.41153 C 53.232201,717.25952 54.509912,716.83335 54.840671,716.59773 54.692756,716.22901 54.146377,715.94088 53.472286,716.13711 52.775988,716.33981 52.260572,716.87424 52.573394,717.41153 Z"
+           id="toenail_5_l"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccsc" />
+      </g>
     </g>
   </g>
   <g

@@ -113,6 +113,10 @@
         <import id="leg_base_l" connectivity="leg_l"/>
         <mirror id="leg_base_r" axis="y" template="leg_base_l"/>
     </g>
+    <g id="feet">
+        <import id="foot_l"/>
+        <mirror id="foot_r" axis="y" template="foot_l"/>
+    </g>
     <g id="arms">
         <conform id="arm_l" geometry="arm_base_l" target="torso_base_l">
             <default offset="static" anchor="shoulder_joint_l"/>
@@ -396,6 +400,36 @@
             base_geometry="leg_r"
             start="5"
             end="9"/>
+    </layer>
+    <layer name="feet">
+        <geometry id="feet"/>
+        <trace_outline
+            id="line_feet_1_l"
+            base_geometry="path_foot_l"
+            start="0"
+            end="11"/>
+        <trace_outline
+            id="line_feet_2_l"
+            base_geometry="path_foot_l"
+            start="12"
+            end="14"/>
+        <trace_outline
+            id="line_feet_3_l"
+            base_geometry="path_foot_l"
+            start="15"
+            end="17"/>
+        <trace_outline
+            id="line_feet_4_l"
+            base_geometry="path_foot_l"
+            start="18"
+            end="23"/>
+        <!--
+        <trace_outline
+            id="line_feet_outer_r"
+            base_geometry="path_foot_r"
+            start="20"
+            end="24"/>
+        -->
     </layer>
     <layer name="torso_decorations">
         <geometry id="pussy"/>
