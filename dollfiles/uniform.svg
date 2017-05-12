@@ -1038,10 +1038,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="-102.36231"
+     inkscape:cx="-234.50517"
      inkscape:cy="527.97575"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer10"
+     inkscape:current-layer="uni_jacket_decoration"
      showgrid="false"
      units="px"
      inkscape:snap-global="false" />
@@ -1053,7 +1053,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -3680,7 +3680,7 @@
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="Jacket"
-     style="display:none">
+     style="display:inline">
     <g
        transform="translate(-4.0306395e-7,-1.1309091e-4)"
        id="uni_jacket_l"
@@ -3703,13 +3703,6 @@
        transform="translate(-4.0306395e-7,-1.1309091e-4)"
        id="uni_jacket_decoration"
        style="display:inline">
-      <path
-         inkscape:label="#uni_jacket_collar_partial_l"
-         sodipodi:nodetypes="ccccccc"
-         inkscape:connector-curvature="0"
-         id="uni_jacket_collar_partial_l-9"
-         d="M -4.499536,239.25 C 6.4706223,212.3019 33.076357,150.97066 24.000926,146.5 29.201808,147.76632 42.468439,153.6995 46.000926,155 49.384629,156.35142 53.330606,162.76625 51.000926,174 L 36.000926,178 50.000926,183 C 27.012615,225.32998 20.31383,230.50681 3.5000013,251.5"
-         style="display:inline;opacity:1;fill:#233c62;fill-opacity:1;stroke:#000000;stroke-width:0.38173229;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <g
          id="uni_jacket_buttons"
          inkscape:label="#uni_jacket_buttons"
@@ -3834,9 +3827,16 @@
         </g>
       </g>
       <path
+         inkscape:label="#uni_jacket_collar_partial_l"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="uni_jacket_collar_partial_l"
+         d="M -4.499536,239.25 C 6.4706223,212.3019 33.076357,150.97066 24.000926,146.5 29.201808,147.76632 42.468439,153.6995 46.000926,155 49.384629,156.35142 53.330606,162.76625 51.000926,174 L 36.000926,178 50.000926,183 C 27.012615,225.32998 20.31383,230.50681 3.5000013,251.5"
+         style="display:inline;opacity:1;fill:#233c62;fill-opacity:1;stroke:#000000;stroke-width:0.38173229;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
          style="display:inline;opacity:1;fill:#233c62;fill-opacity:1;stroke:#000000;stroke-width:0.38173229;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="M 22.999707,277 C -3.2204556,229.0519 -33.076187,150.97066 -24.000756,146.5 -29.201638,147.76632 -42.468269,153.6995 -46.000758,155 -49.384458,156.35142 -53.330438,162.76625 -51.000758,174 L -36.000756,178 -50.000758,183 C -27.512445,225.07998 -3.3136626,255.75681 22.00017,279"
-         id="uni_jacket_collar_r-8"
+         id="uni_jacket_collar_r"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccccccc"
          inkscape:label="#uni_jacket_collar_r" />
@@ -4089,8 +4089,8 @@
        id="uni_jacket_loose_decoration">
       <g
          transform="translate(18,4)"
-         inkscape:label="#uni_jacket_buttons"
-         id="g4585">
+         inkscape:label="#uni_jacket_loose_buttons"
+         id="uni_jacket_loose_buttons">
         <g
            inkscape:label="#uni_button_bottom"
            id="g4569"
@@ -4230,7 +4230,7 @@
      inkscape:groupmode="layer"
      id="layer10"
      inkscape:label="Jacket open"
-     style="display:inline">
+     style="display:none">
     <path
        inkscape:label="#uni_jacket_open_body_l"
        sodipodi:nodetypes="cscccccscccc"
