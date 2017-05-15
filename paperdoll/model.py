@@ -223,46 +223,54 @@ class MPaperdollEditor(MBase):
         # load layers
         log.info("Load layers")
         xmllayers = descfile.tree.find("layers")
-        for xmlelem in xmllayers:
-            name = xmlelem.get("name", None)
-            layercontent = []
-            for layerchild in xmlelem:
-                if layerchild.tag == "conform":
-                    geom = layerchild.get("geometry", None)
-                    basegeom = layerchild.get("base_geometry", None)
-                    layercontent.append({"geometry": geom,
-                                         "base_geometry": basegeom})
-#                elif layerchild.tag == "animation":
-#                    animname = layerchild.get("name", None)
-#                    layercontent.append({"animation": animname})
-                elif layerchild.tag == "geometry":
-                    geom = layerchild.get("id", None)
-                    layercontent.append({"geometry": geom})
-                else:
-                    data = layerchild.attrib.copy()
-                    data["tag"] = layerchild.tag
-                    layercontent.append(data)
-            self.layers.append({"name": name,
-                                "content": layercontent})
+        if xmllayers is None:
+            log.warning("No layer description found in %s",
+                        descfile.path.name)
+        else:
+            for xmlelem in xmllayers:
+                name = xmlelem.get("name", None)
+                layercontent = []
+                for layerchild in xmlelem:
+                    if layerchild.tag == "conform":
+                        geom = layerchild.get("geometry", None)
+                        basegeom = layerchild.get("base_geometry", None)
+                        layercontent.append({"geometry": geom,
+                                             "base_geometry": basegeom})
+    #                elif layerchild.tag == "animation":
+    #                    animname = layerchild.get("name", None)
+    #                    layercontent.append({"animation": animname})
+                    elif layerchild.tag == "geometry":
+                        geom = layerchild.get("id", None)
+                        layercontent.append({"geometry": geom})
+                    else:
+                        data = layerchild.attrib.copy()
+                        data["tag"] = layerchild.tag
+                        layercontent.append(data)
+                self.layers.append({"name": name,
+                                    "content": layercontent})
         # load dials
         log.info("Load dials")
         xmllayers = descfile.tree.find("dials")
-        for xmlelem in xmllayers:
-            name = xmlelem.get("name", None)
-            if name in self.dials:
-                dial = self.dials[name]
-            else:
-                minimum = int(xmlelem.get("min", None))
-                maximum = int(xmlelem.get("max", None))
-                dial = MDial(name, minimum=minimum, maximum=maximum)
-                self.dials[name] = dial
-            # add animations to dial
-            for xmlanim in xmlelem:
-                animname = xmlanim.get("name", None)
-                animmin = int(xmlanim.get("min", None))
-                animinit = int(xmlanim.get("init", None))
-                animmax = int(xmlanim.get("max", None))
-                dial.add_animation(animname, animmin, animinit, animmax)
+        if xmllayers is None:
+            log.warning("No dial description found in %s",
+                        descfile.path.name)
+        else:
+            for xmlelem in xmllayers:
+                name = xmlelem.get("name", None)
+                if name in self.dials:
+                    dial = self.dials[name]
+                else:
+                    minimum = int(xmlelem.get("min", None))
+                    maximum = int(xmlelem.get("max", None))
+                    dial = MDial(name, minimum=minimum, maximum=maximum)
+                    self.dials[name] = dial
+                # add animations to dial
+                for xmlanim in xmlelem:
+                    animname = xmlanim.get("name", None)
+                    animmin = int(xmlanim.get("min", None))
+                    animinit = int(xmlanim.get("init", None))
+                    animmax = int(xmlanim.get("max", None))
+                    dial.add_animation(animname, animmin, animinit, animmax)
         return descfile
 
     def get_geometry(self, geomid):
