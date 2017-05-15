@@ -130,21 +130,21 @@
     <g id="lower_arms">
         <conform id="lower_arm_l" geometry="lower_arm_base_l"
              target="torso_base_l">
-            <default offset="static" anchor="shoulder_joint_l"/>
+            <default offset="static" anchor="inner_shoulder_l"/>
         </conform>
         <conform id="lower_arm_r" geometry="lower_arm_base_r"
              target="torso_base_r">
-            <default offset="static" anchor="shoulder_joint_r"/>
+            <default offset="static" anchor="inner_shoulder_r"/>
         </conform>
     </g>
     <g id="upper_arms">
         <conform id="upper_arm_l" geometry="upper_arm_base_l"
              target="torso_base_l">
-            <default offset="static" anchor="shoulder_joint_l"/>
+            <default offset="static" anchor="inner_shoulder_l"/>
         </conform>
         <conform id="upper_arm_r" geometry="upper_arm_base_r"
              target="torso_base_r">
-            <default offset="static" anchor="shoulder_joint_r"/>
+            <default offset="static" anchor="inner_shoulder_r"/>
         </conform>
     </g>
     <g id="legs">
@@ -307,17 +307,22 @@
         <node id="face_side_l"/>
         <node id="face_top"/>
     </circular>
-    <circular id="arm_l">
-        <node id="shoulder_joint_l"/>
-        <node id="shoulder_l"/>
-        <node id="shoulder2_l"/>
+    <circular id="upper_arm_l">
+        <node id="crook_of_the_arm_l"/>
+        <node id="armpit_l"/>
+        <node id="inner_shoulder_l"/>
+        <node id="upper_shoulder_l"/>
+        <node id="outer_shoulder_l"/>
         <node id="outer_upper_arm_l"/>
         <node id="elbow_l"/>
+    </circular>
+    <circular id="lower_arm_l">
+        <node id="elbow_l"/>
+        <node id="outer_lower_arm_l"/>
         <node id="outer_wrist_l"/>
         <node id="inner_wrist_l"/>
         <node id="inner_lower_arm_l"/>
         <node id="crook_of_the_arm_l"/>
-        <node id="armpit_l"/>
     </circular>
     <circular id="torso_l">
         <node id="head_m"/>
@@ -325,7 +330,7 @@
         <node id="throat_l"/>
         <node id="collarbone_l"/>
         <node id="shoulder_l"/>
-        <node id="shoulder_joint_l"/>
+        <node id="inner_shoulder_l"/>
         <node id="armpit_l"/>
         <node id="ribs_l"/>
         <node id="waist_l"/>
