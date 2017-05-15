@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xml>
+<geometry>
+    <g id="g_upper_arm_bone_l">
+        <import id="upper_arm_bone_l"/>
+    </g>
+    <g id="g_upper_arm_bone_lifted_l">
+        <import id="upper_arm_bone_lifted_l" geometry="upper_arm_bone_l"
+             connectivity="upper_arm_bone_l"
+             transform="rotate(140 {shoulder_joint_l})"/>
+    </g>
+</geometry>
+<connectivity>
+    <mirror template_suffix="_l" mirror_suffix="_r"/>
+    <linear id="upper_arm_bone_l">
+        <node id="shoulder_joint_l"/>
+        <node id="elbow_l"/>
+    </linear>
+</connectivity>
+<animations>
+   <animation name="lift_left_arm_ani" default="0">
+		<keyframe number="0" geometry="g_upper_arm_bone_l"/>
+		<keyframe number="139" geometry="g_upper_arm_bone_lifted_l"/>
+	</animation>
+</animations>
+<dials>
+    <dial name="lift_left_arm" min="1" max="100">
+        <animation name="lift_left_arm_ani" min="0" init="0" max="100"/>
+    </dial>
+</dials>
+</xml>
