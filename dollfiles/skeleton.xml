@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xml>
 <geometry>
-    <g id="g_upper_arm_bone_l">
-        <import id="upper_arm_bone_l"/>
-    </g>
-    <g id="g_upper_arm_bone_lifted_l">
-        <import id="upper_arm_bone_lifted_l" geometry="upper_arm_bone_l"
-             connectivity="upper_arm_bone_l"
-             transform="rotate(140 {shoulder_joint_l})"/>
-    </g>
+    <import id="g_bone_pelvis"/>
+    <import id="upper_arm_bone_lifted_l" geometry="upper_arm_bone_l"
+         connectivity="upper_arm_bone_l"
+         transform="rotate(-140 {shoulder_joint_l})"/>
 </geometry>
 <connectivity>
     <mirror template_suffix="_l" mirror_suffix="_r"/>
@@ -17,11 +13,24 @@
         <node id="elbow_l"/>
     </linear>
 </connectivity>
+<layers>
+    <layer name="skeleton">
+        <geometry id="g_bone_pelvis"/>
+        <animation name="lift_left_arm_ani"/>
+    </layer>
+</layers>
 <animations>
+   <!--
    <animation name="lift_left_arm_ani" default="0">
-		<keyframe number="0" geometry="g_upper_arm_bone_l"/>
-		<keyframe number="139" geometry="g_upper_arm_bone_lifted_l"/>
+		<keyframe number="0" geometry="upper_arm_bone_l"/>
+		<keyframe number="139" geometry="upper_arm_bone_lifted_l"/>
 	</animation>
+   -->
+   <transformed name="lift_left_arm_ani" default="0" geometry="upper_arm_bone_l"
+       command="rotate({a} {shoulder_joint_l})">
+		<keyframe number="0" a="0"/>
+		<keyframe number="139" a="-139"/>
+	</transformed>
 </animations>
 <dials>
     <dial name="lift_left_arm" min="1" max="100">
