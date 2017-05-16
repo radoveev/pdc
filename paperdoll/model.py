@@ -195,18 +195,28 @@ class MPaperdollEditor(MBase):
     def frames(self):
         '''Returns the animation frames corresponding to the current state.'''
         frames = []
-        for animname, animstate in self.state.items():
-            anim = self.animations[animname]
-            if isinstance(anim, svglib.CombinedAnimation):
-                frame = anim.get_frame(animstate, self.state.copy())
-            else:
-                frame = anim.get_frame(animstate)
-            frames.append(frame)
+        for name in sorted(self.animations):
+            frames.append(self.animation_frame(name))
         return frames
 
 #    def animation_state(self, name):
 #        '''Returns the current state of the specified animation.'''
 #        return self.state[name]
+
+    def animation_frame(self, name, state=None):
+        '''Return the current frame of this animation.
+
+        If a state is given the frame corresponding to that state is returned.
+        '''
+        anim = self.animations[name]
+        if state is None:
+            state = self.state[name]
+        if isinstance(anim, svglib.CombinedAnimation):
+            frame = anim.get_frame(state, self.state.copy())
+        else:
+            frame = anim.get_frame(state)
+        return frame
+        animbone = self.animations["lift_left_arm_ani"].get_frame()
 
     def load_content(self, file, attribute):
         source = getattr(file, attribute)
