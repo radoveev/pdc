@@ -334,7 +334,13 @@ class MPaperdollEditor(MBase):
                     else:
                         frame = anim.get_frame(animstate)
                     # add geometry elements that should be drawn to the doll
-                    for elem in frame.iterate():
+                    subelems = []
+                    if isinstance(frame, svglib.SvgGroup):
+                        for subelem in frame.iterate():
+                            subelems.append(subelem)
+                    else:
+                        subelems.append(frame)
+                    for elem in subelems:
                         elid = elem.elemid
                         assert elid not in self.dollgeometry, elid
                         self.dollgeometry[elid] = elem
