@@ -389,9 +389,8 @@ class MPaperdollEditor(MBase):
                     layerelem.append(unified_elem)
                 else:
                     group = self.get_geometry(content["geometry"])
-                    # create a copy of the group and remove all children
+                    # create a copy of the group
                     groupelem = group.copy()
-                    groupelem.children = []
                     layerelem.append(groupelem)
                     # add all geometry elements to the new group
                     for elem in group.iterate():
@@ -402,8 +401,6 @@ class MPaperdollEditor(MBase):
                                 targetid = elem.delta.trgtelem.connectivity
                                 targetelem = self.get_geometry(targetid)
                                 elem.conform_to(targetelem)
-                            # add element to new group
-                            groupelem.append(elem)
         # add defs to svg document
         xmldefselem = ET.Element("defs", {"id": "defs_paperdoll1"})
         descfile = self.dollfiles["linedoll.xml"]
