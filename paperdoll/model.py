@@ -390,10 +390,12 @@ class MPaperdollEditor(MBase):
                     # add all geometry elements to the new group
                     for elem in group.iterate():
                         if isinstance(elem, svglib.SvgGeometryElement):
-                            # reload elements so conforming paths can adjust
+                            # adjust conforming paths
                             delta = getattr(elem, "delta", None)
                             if delta is not None:
-                                elem = self.get_geometry(elem.elemid)
+                                targetid = elem.delta.trgtelem.connectivity
+                                targetelem = self.get_geometry(targetid)
+                                elem.conform_to(targetelem)
                             # add element to new group
                             groupelem.append(elem)
         # add defs to svg document
