@@ -393,13 +393,17 @@ class MPaperdollEditor(MBase):
                     groupelem = group.copy()
                     layerelem.append(groupelem)
                     # add all geometry elements to the new group
+                    # TODO this should probably loop over groupelem, not group
+                    # TODO why do conforming paths break if we loop over groupelem?
                     for elem in group.iterate():
+#                    for elem in groupelem.iterate():
                         if isinstance(elem, svglib.SvgGeometryElement):
                             # adjust conforming paths
                             delta = getattr(elem, "delta", None)
                             if delta is not None:
                                 targetid = elem.delta.trgtelem.connectivity
                                 targetelem = self.get_geometry(targetid)
+#                                targetelem = svgelem.idmap[targetid]
                                 elem.conform_to(targetelem)
         # add defs to svg document
         xmldefselem = ET.Element("defs", {"id": "defs_paperdoll1"})
