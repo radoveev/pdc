@@ -316,7 +316,7 @@ class MPaperdollEditor(MBase):
 
     #TODO when modifying the group structure of elements, transforms
     #TODO and styles from removed parent groups should be applied to children
-    def draw(self, width=400, height=800, viewbox="-200 0 400 800"):
+    def draw(self, width=600, height=800, viewbox="-300 0 600 800"):
         '''Returns a SVG drawing in a string.'''
         self.dollgeometry = {}
         # calculate the geometry elements that should be drawn from the

@@ -53,7 +53,7 @@ def main():
     view.gui = view.VEditorWindow(model.editor)
     # display the gui
     log.info("Show main window")
-    view.gui.resizeToScreen(width=0.5, height=0.8)
+    view.gui.resizeToScreen(width=0.8, height=0.8)
     view.gui.centerOnScreen()
     view.gui.show()
     # define initial state and draw the doll
