@@ -316,22 +316,11 @@ class MPaperdollEditor(MBase):
         '''
         return svglib.SvgPath.from_path(geomelem, elemid, start, end)
 
-    def transform_skeleton(self, svgdoc):
-        '''Apply current translations and rotations to skeleton.'''
-        bonetransforms = {}
-        skeletondesc = self.dollfiles["skeleton.xml"]
-        # replace all H and V commands in bones with L
-        #TODO do this for all elements
-        pelvisbone = svgdoc.idmap["g_bone_pelvis"]
-        for subelem in pelvisbone.iterate():
-            if isinstance(subelem, svglib.SvgGeometryElement):
-                for cmd in subelem.commands:
-                    if cmd.commandletter in "HV":
-                        cmd.commandletter = "L"
-                    elif cmd.commandletter in "hv":
-                        cmd.commandletter = "l"
+    def get_bone_transforms(self, bonename):
+        '''Return the current scale, translation and rotation for this bone.'''
         # fetch base bone geometry
-        basebone = skeletondesc.geometry["upper_arm_bone_l"]
+        skeletondesc = self.dollfiles["skeleton.xml"]
+        basebone = skeletondesc.geometry[bonename]
 #        print("basebone", basebone.startpoint, basebone.endpoint)
         # calculate transformations for each bone group from animated bones
         animbone = self.animation_frame("lift_left_arm_ani")
@@ -352,8 +341,29 @@ class MPaperdollEditor(MBase):
 #        print("angle", angle, "    animangle - baseangle = ",
 #              animangle, "-", baseangle)
 #        print(basebone, animbone)
-#        parameters = basebone.matrix_parameters(animbone)
-        # apply matrix transformation to bone group
+        return scale, translation, angle, basebone.startpoint
+
+    def transform_skeleton(self, svgdoc):
+        '''Apply current scale, translations and rotations to skeleton.
+
+        This method assumes that all elements in svgdoc have the scale and
+        position they have in the SVG data files.
+        '''
+        bonetransforms = {}
+        # replace all H and V commands in bones with L
+        #TODO do this for all elements
+        pelvisbone = svgdoc.idmap["g_bone_pelvis"]
+        for subelem in pelvisbone.iterate():
+            if isinstance(subelem, svglib.SvgGeometryElement):
+                for cmd in subelem.commands:
+                    if cmd.commandletter in "HV":
+                        cmd.commandletter = "L"
+                    elif cmd.commandletter in "hv":
+                        cmd.commandletter = "l"
+        # determine bone transformations
+        transforms = self.get_bone_transforms("upper_arm_bone_l")
+        scale, translation, angle, rotcenter = transforms
+        # apply transformations to bone group
 #        print("svgdoc idmap", sorted(svgelem.idmap))
         bonegroup = svgdoc.idmap["g_bone_arm_l"]
 #        print("a=%s  b=%s  c=%s  d=%s  e=%s  f=%s" % parameters)
@@ -364,7 +374,7 @@ class MPaperdollEditor(MBase):
 #        print("original lower arm from group", lowarm.startpoint, lowarm.endpoint)
 #        print("original hand from group", hand.startpoint, hand.endpoint)
 #        bonegroup.matrix(*parameters)
-        bonegroup.rotate(angle, basebone.startpoint.x, basebone.startpoint.y)
+        bonegroup.rotate(angle, rotcenter.x, rotcenter.y)
         bonegroup.translate(translation.x, translation.y)
         bonegroup.scale(scale, scale)
 #        print("transformed upper arm from group", uparm.startpoint, uparm.endpoint)
@@ -383,8 +393,7 @@ class MPaperdollEditor(MBase):
         # store bone transformations
         bonetransforms["upper_arm_bone_l"] = []
         bonetransforms["upper_arm_bone_l"].append(
-                ("rotate", angle, basebone.startpoint.x,
-                 basebone.startpoint.y))
+                ("rotate", angle, rotcenter.x, rotcenter.y))
         bonetransforms["upper_arm_bone_l"].append(
                 ("translate", translation.x, translation.y))
         bonetransforms["upper_arm_bone_l"].append(("scale", scale, scale))
