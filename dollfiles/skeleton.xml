@@ -34,7 +34,7 @@
        geometry="lower_arm_bone_l"
        command="rotate({a} {elbow_joint_l})">
 		<keyframe number="0" a="0"/>
-		<keyframe number="80" a="-80"/>
+		<keyframe number="80" a="160"/>
 	</transformed>
 </animations>
 <dials>

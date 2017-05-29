@@ -315,32 +315,42 @@ class MPaperdollEditor(MBase):
         '''
         return svglib.SvgPath.from_path(geomelem, elemid, start, end)
 
-    def get_bone_transforms(self, bonename):
+    def get_bone_transforms(self, bone):
         '''Return the current scale, translation and rotation for this bone.'''
-        # fetch base bone geometry
+        # find the transformation to create the rotated bone
         skeletondesc = self.dollfiles["skeleton.xml"]
-        basebone = skeletondesc.geometry[bonename]
+        animname = "rotate_" + bone.elemid
+        anim = skeletondesc.animations[animname]
+        animstate = self.state[animname]
+#        lastkfnum = anim.keyframe_numbers[-1]
+        tfcmd = anim.get_command(animstate)
+        # create the rotated bone
+        rotbone = bone.copy()
+        rotbone.transform(tfcmd)
+#        # fetch base bone geometry
+#        skeletondesc = self.dollfiles["skeleton.xml"]
+#        basebone = skeletondesc.geometry[bonename]
 #        print("basebone", basebone.startpoint, basebone.endpoint)
-        # calculate transformations for each bone group from animated bones
-        animbone = self.animation_frame("rotate_" + bonename)
-#        print("animbone", animbone.startpoint, animbone.endpoint)
+#        # calculate transformations for each bone group from animated bones
+#        rotbone = self.animation_frame("rotate_" + bonename)
+#        print("rotbone", rotbone.startpoint, rotbone.endpoint)
         # determine scale
-        scale = Decimal(basebone.startpoint.distance(basebone.endpoint) /
-                        animbone.startpoint.distance(animbone.endpoint))
+        scale = Decimal(bone.startpoint.distance(bone.endpoint) /
+                        rotbone.startpoint.distance(rotbone.endpoint))
         # determine translation relative to the original position
-        translation = animbone.startpoint - basebone.startpoint
+        translation = rotbone.startpoint - bone.startpoint
         # determine angle relative to the original position
-        animbone.translate(-translation.x, -translation.y)
-        animangle = animbone.angle
-        baseangle = basebone.angle
-        animbone.translate(translation.x, translation.y)
+        rotbone.translate(-translation.x, -translation.y)
+        animangle = rotbone.angle
+        baseangle = bone.angle
+        rotbone.translate(translation.x, translation.y)
         angle = animangle - baseangle
 #        print("scale", scale)
 #        print("translation", translation)
 #        print("angle", angle, "    animangle - baseangle = ",
 #              animangle, "-", baseangle)
-#        print(basebone, animbone)
-        return scale, translation, angle, basebone.startpoint
+#        print(bone, rotbone)
+        return scale, translation, angle, bone.startpoint
 
     def transform_skeleton(self, svgdoc):
         '''Apply current scale, translations and rotations to skeleton.
@@ -349,9 +359,12 @@ class MPaperdollEditor(MBase):
         position they have in the SVG data files.
         '''
         bonetransforms = {}
+        bonegroupmap = {"upper_arm_bone_l": "g_bone_arm_l",
+                        "lower_arm_bone_l": "g_bone_lower_arm_l"}
         # replace all H and V commands in bones with L
-        #TODO do this for all elements
+        # TODO do this for all elements
         pelvisbone = svgdoc.idmap["g_bone_pelvis"]
+        boneidmap = pelvisbone.idmap.copy()
         for subelem in pelvisbone.iterate():
             if isinstance(subelem, svglib.SvgGeometryElement):
                 for cmd in subelem.commands:
@@ -360,42 +373,21 @@ class MPaperdollEditor(MBase):
                     elif cmd.commandletter in "hv":
                         cmd.commandletter = "l"
         # determine bone transformations
-        transforms = self.get_bone_transforms("upper_arm_bone_l")
-        scale, translation, angle, rotcenter = transforms
-        # apply transformations to bone group
-#        print("svgdoc idmap", sorted(svgelem.idmap))
-        bonegroup = svgdoc.idmap["g_bone_arm_l"]
-#        print("a=%s  b=%s  c=%s  d=%s  e=%s  f=%s" % parameters)
-        uparm = bonegroup.idmap["upper_arm_bone_l"]
-        lowarm = bonegroup.idmap["lower_arm_bone_l"]
-        hand = bonegroup.idmap["hand_bone_l"]
-#        print("original upper arm from group", uparm.startpoint, uparm.endpoint)
-#        print("original lower arm from group", lowarm.startpoint, lowarm.endpoint)
-#        print("original hand from group", hand.startpoint, hand.endpoint)
-#        bonegroup.matrix(*parameters)
-        bonegroup.rotate(angle, rotcenter.x, rotcenter.y)
-        bonegroup.translate(translation.x, translation.y)
-        bonegroup.scale(scale, scale)
-#        print("transformed upper arm from group", uparm.startpoint, uparm.endpoint)
-#        print("transformed lower arm from group", lowarm.startpoint, lowarm.endpoint)
-#        print("transformed hand from group", hand.startpoint, hand.endpoint)
-#        print()
-#        bonegroup.matrix(1, 0, 0, 1, 20, 0)
-#        testbone = skeletondesc.geometry["upper_arm_bone_r"]
-#        testbone.matrix(*parameters)
-#        print("list bones of svgdoc")
-#        for child in svgelem.iterate():
-#            if "bone" in child.elemid:
-#                print(child)
-#        print()
-
-        # store bone transformations
-        bonetransforms["upper_arm_bone_l"] = []
-        bonetransforms["upper_arm_bone_l"].append(
-                ("rotate", angle, rotcenter.x, rotcenter.y))
-        bonetransforms["upper_arm_bone_l"].append(
-                ("translate", translation.x, translation.y))
-        bonetransforms["upper_arm_bone_l"].append(("scale", scale, scale))
+        for bonename in ("upper_arm_bone_l", "lower_arm_bone_l"):
+            bone = boneidmap[bonename]
+            transforms = self.get_bone_transforms(bone)
+            scale, translation, angle, rotcenter = transforms
+            # apply transformations to bone group
+            bonegroupname = bonegroupmap[bonename]
+            bonegroup = svgdoc.idmap[bonegroupname]
+            bonegroup.rotate(angle, rotcenter.x, rotcenter.y)
+            bonegroup.translate(translation.x, translation.y)
+            bonegroup.scale(scale, scale)
+            # store bone transformations
+            bonetflist = [("rotate", angle, rotcenter.x, rotcenter.y),
+                          ("translate", translation.x, translation.y),
+                          ("scale", scale, scale)]
+            bonetransforms[bonename] = bonetflist
 
         # transform all geometry elements associated with bone
         upper_arm = svgdoc.idmap["upper_arm_l"]
