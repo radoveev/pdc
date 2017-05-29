@@ -373,21 +373,25 @@ class MPaperdollEditor(MBase):
                     elif cmd.commandletter in "hv":
                         cmd.commandletter = "l"
         # determine bone transformations
-        for bonename in ("upper_arm_bone_l", "lower_arm_bone_l"):
+        for bonename in ("upper_arm_bone_l", "lower_arm_bone_l",
+                         "hand_bone_l"):
             bone = boneidmap[bonename]
             transforms = self.get_bone_transforms(bone)
             scale, translation, angle, rotcenter = transforms
-            # apply transformations to bone group
-            bonegroupname = bonegroupmap[bonename]
-            bonegroup = svgdoc.idmap[bonegroupname]
-            bonegroup.rotate(angle, rotcenter.x, rotcenter.y)
-            bonegroup.translate(translation.x, translation.y)
-            bonegroup.scale(scale, scale)
             # store bone transformations
             bonetflist = [("rotate", angle, rotcenter.x, rotcenter.y),
                           ("translate", translation.x, translation.y),
                           ("scale", scale, scale)]
             bonetransforms[bonename] = bonetflist
+            # apply transformations to bone or bone group
+            bonegroupname = bonegroupmap.get(bonename, None)
+            if bonegroupname is None:
+                tfbone = bone
+            else:
+                tfbone = svgdoc.idmap[bonegroupname]
+            tfbone.rotate(angle, rotcenter.x, rotcenter.y)
+            tfbone.translate(translation.x, translation.y)
+            tfbone.scale(scale, scale)
 
         # transform all geometry elements associated with bone
         upper_arm = svgdoc.idmap["upper_arm_l"]
