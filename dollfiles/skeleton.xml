@@ -10,7 +10,7 @@
     <mirror template_suffix="_l" mirror_suffix="_r"/>
     <linear id="upper_arm_bone_l">
         <node id="shoulder_joint_l"/>
-        <node id="elbow_l"/>
+        <node id="elbow_joint_l"/>
     </linear>
 </connectivity>
 <layers>
