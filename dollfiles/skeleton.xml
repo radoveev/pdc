@@ -12,29 +12,37 @@
         <node id="shoulder_joint_l"/>
         <node id="elbow_joint_l"/>
     </linear>
+    <linear id="lower_arm_bone_l">
+        <node id="elbow_joint_l"/>
+        <node id="wrist_joint_l"/>
+    </linear>
 </connectivity>
 <layers>
     <layer name="skeleton">
         <geometry id="g_bone_pelvis"/>
-        <animation name="lift_left_arm_ani"/>
+        <animation name="rotate_upper_arm_bone_l"/>
     </layer>
 </layers>
 <animations>
-   <!--
-   <animation name="lift_left_arm_ani" default="0">
-		<keyframe number="0" geometry="upper_arm_bone_l"/>
-		<keyframe number="139" geometry="upper_arm_bone_lifted_l"/>
-	</animation>
-   -->
-   <transformed name="lift_left_arm_ani" default="0" geometry="upper_arm_bone_l"
+   <transformed name="rotate_upper_arm_bone_l" default="0"
+       geometry="upper_arm_bone_l"
        command="rotate({a} {shoulder_joint_l})">
 		<keyframe number="0" a="0"/>
 		<keyframe number="139" a="-139"/>
 	</transformed>
+   <transformed name="rotate_lower_arm_bone_l" default="0"
+       geometry="lower_arm_bone_l"
+       command="rotate({a} {elbow_joint_l})">
+		<keyframe number="0" a="0"/>
+		<keyframe number="80" a="-80"/>
+	</transformed>
 </animations>
 <dials>
     <dial name="lift_left_arm" min="1" max="100">
-        <animation name="lift_left_arm_ani" min="0" init="0" max="100"/>
+        <animation name="rotate_upper_arm_bone_l" min="0" init="0" max="139"/>
+    </dial>
+    <dial name="rotate_left_lower_arm" min="1" max="100">
+        <animation name="rotate_lower_arm_bone_l" min="0" init="0" max="80"/>
     </dial>
 </dials>
 </xml>

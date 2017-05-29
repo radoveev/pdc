@@ -217,7 +217,6 @@ class MPaperdollEditor(MBase):
         else:
             frame = anim.get_frame(state)
         return frame
-        animbone = self.animations["lift_left_arm_ani"].get_frame()
 
     def load_content(self, file, attribute):
         source = getattr(file, attribute)
@@ -323,7 +322,7 @@ class MPaperdollEditor(MBase):
         basebone = skeletondesc.geometry[bonename]
 #        print("basebone", basebone.startpoint, basebone.endpoint)
         # calculate transformations for each bone group from animated bones
-        animbone = self.animation_frame("lift_left_arm_ani")
+        animbone = self.animation_frame("rotate_" + bonename)
 #        print("animbone", animbone.startpoint, animbone.endpoint)
         # determine scale
         scale = Decimal(basebone.startpoint.distance(basebone.endpoint) /
