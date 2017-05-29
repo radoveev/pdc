@@ -393,13 +393,20 @@ class MPaperdollEditor(MBase):
             tfbone.translate(translation.x, translation.y)
             tfbone.scale(scale, scale)
 
-        # transform all geometry elements associated with bone
-        upper_arm = svgdoc.idmap["upper_arm_l"]
-        for tf in bonetransforms["upper_arm_bone_l"]:
-            operation = tf[0]
-            parameters = tf[1:]
-            method = getattr(upper_arm, operation)
-            method(*parameters)
+        # transform all geometry elements associated with each bone
+        for bonename in bonetransforms:
+            bodypart = svgdoc.idmap[bonename.replace("_bone", "")]
+            for tf in bonetransforms[bonename]:
+                operation = tf[0]
+                parameters = tf[1:]
+                method = getattr(bodypart, operation)
+                method(*parameters)
+#        upper_arm = svgdoc.idmap["upper_arm_l"]
+#        for tf in bonetransforms["upper_arm_bone_l"]:
+#            operation = tf[0]
+#            parameters = tf[1:]
+#            method = getattr(upper_arm, operation)
+#            method(*parameters)
         return svgdoc
 
     #TODO when modifying the group structure of elements, transforms
