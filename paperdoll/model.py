@@ -321,7 +321,6 @@ class MPaperdollEditor(MBase):
         This method assumes that all elements in svgdoc have the scale and
         position they have in the SVG data files.
         '''
-        bonetransforms = {}
         bonegroupmap = {"upper_arm_bone_l": "g_bone_arm_l",
                         "lower_arm_bone_l": "g_bone_lower_arm_l"}
         # replace all H and V commands in bones with L
@@ -335,10 +334,11 @@ class MPaperdollEditor(MBase):
                         cmd.commandletter = "L"
                     elif cmd.commandletter in "hv":
                         cmd.commandletter = "l"
-        # determine bone transformations
+        # determine "local" bone transformations
+        bonelist = ("upper_arm_bone_l", "lower_arm_bone_l",
+                         "hand_bone_l")
         skeletondesc = self.dollfiles["skeleton.xml"]
-        for bonename in ("upper_arm_bone_l", "lower_arm_bone_l",
-                         "hand_bone_l"):
+        for bonename in bonelist:
             bone = boneidmap[bonename]
             # find the transformation to create the rotated bone
             animname = "rotate_" + bone.elemid
@@ -351,11 +351,6 @@ class MPaperdollEditor(MBase):
             # determine the operations to transform bone into rotbone
             transforms = bone.transform_operations(rotbone)
             scale, translation, angle, rotcenter = transforms
-            # store bone transformations
-            bonetflist = [("rotate", angle, rotcenter.x, rotcenter.y),
-                          ("translate", translation.x, translation.y),
-                          ("scale", scale, scale)]
-            bonetransforms[bonename] = bonetflist
             # apply transformations to bone or bone group
             bonegroupname = bonegroupmap.get(bonename, None)
             if bonegroupname is None:
@@ -365,6 +360,23 @@ class MPaperdollEditor(MBase):
             tfbone.rotate(angle, rotcenter.x, rotcenter.y)
             tfbone.translate(translation.x, translation.y)
             tfbone.scale(scale, scale)
+
+        # determine "global" bone transformations
+        bonetransforms = {}
+        basepelvisbone = skeletondesc.get_geometry("g_bone_pelvis")
+        baseboneidmap = basepelvisbone.idmap.copy()
+        for bonename in bonelist:
+            bone = boneidmap[bonename]
+            basebone = baseboneidmap[bonename]
+            # determine transformations to get from base position directly
+            # to the transformed position of this bone
+            transforms = basebone.transform_operations(bone)
+            scale, translation, angle, rotcenter = transforms
+            # store bone transformations
+            bonetflist = [("rotate", angle, rotcenter.x, rotcenter.y),
+                          ("translate", translation.x, translation.y),
+                          ("scale", scale, scale)]
+            bonetransforms[bonename] = bonetflist
 
         # transform all geometry elements associated with each bone
         for bonename in bonetransforms:
