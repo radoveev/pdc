@@ -315,43 +315,6 @@ class MPaperdollEditor(MBase):
         '''
         return svglib.SvgPath.from_path(geomelem, elemid, start, end)
 
-    def get_bone_transforms(self, bone):
-        '''Return the current scale, translation and rotation for this bone.'''
-        # find the transformation to create the rotated bone
-        skeletondesc = self.dollfiles["skeleton.xml"]
-        animname = "rotate_" + bone.elemid
-        anim = skeletondesc.animations[animname]
-        animstate = self.state[animname]
-#        lastkfnum = anim.keyframe_numbers[-1]
-        tfcmd = anim.get_command(animstate)
-        # create the rotated bone
-        rotbone = bone.copy()
-        rotbone.transform(tfcmd)
-#        # fetch base bone geometry
-#        skeletondesc = self.dollfiles["skeleton.xml"]
-#        basebone = skeletondesc.geometry[bonename]
-#        print("basebone", basebone.startpoint, basebone.endpoint)
-#        # calculate transformations for each bone group from animated bones
-#        rotbone = self.animation_frame("rotate_" + bonename)
-#        print("rotbone", rotbone.startpoint, rotbone.endpoint)
-        # determine scale
-        scale = Decimal(bone.startpoint.distance(bone.endpoint) /
-                        rotbone.startpoint.distance(rotbone.endpoint))
-        # determine translation relative to the original position
-        translation = rotbone.startpoint - bone.startpoint
-        # determine angle relative to the original position
-        rotbone.translate(-translation.x, -translation.y)
-        animangle = rotbone.angle
-        baseangle = bone.angle
-        rotbone.translate(translation.x, translation.y)
-        angle = animangle - baseangle
-#        print("scale", scale)
-#        print("translation", translation)
-#        print("angle", angle, "    animangle - baseangle = ",
-#              animangle, "-", baseangle)
-#        print(bone, rotbone)
-        return scale, translation, angle, bone.startpoint
-
     def transform_skeleton(self, svgdoc):
         '''Apply current scale, translations and rotations to skeleton.
 
@@ -373,10 +336,20 @@ class MPaperdollEditor(MBase):
                     elif cmd.commandletter in "hv":
                         cmd.commandletter = "l"
         # determine bone transformations
+        skeletondesc = self.dollfiles["skeleton.xml"]
         for bonename in ("upper_arm_bone_l", "lower_arm_bone_l",
                          "hand_bone_l"):
             bone = boneidmap[bonename]
-            transforms = self.get_bone_transforms(bone)
+            # find the transformation to create the rotated bone
+            animname = "rotate_" + bone.elemid
+            anim = skeletondesc.animations[animname]
+            animstate = self.state[animname]
+            tfcmd = anim.get_command(animstate)
+            # create the rotated bone
+            rotbone = bone.copy()
+            rotbone.transform(tfcmd)
+            # determine the operations to transform bone into rotbone
+            transforms = bone.transform_operations(rotbone)
             scale, translation, angle, rotcenter = transforms
             # store bone transformations
             bonetflist = [("rotate", angle, rotcenter.x, rotcenter.y),
